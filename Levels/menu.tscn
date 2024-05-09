@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://cavb3qwy08dpc"]
+
+[ext_resource type="Texture2D" uid="uid://csipfc4oi5bv2" path="res://Assets/UI/background.png" id="1_r763d"]
+[ext_resource type="FontFile" uid="uid://c10a6yw2inefn" path="res://Fonts/DragonHunter-9Ynxj.otf" id="2_5lu0n"]
+[ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="3_ql3w4"]
+
+[node name="Menu" type="CanvasLayer"]
+scale = Vector2(0.961, 0.721)
+transform = Transform2D(0.961, 0, 0, 0.721, 0, 0)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 800.0
+offset_bottom = 600.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_r763d")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.5
+offset_top = -235.5
+offset_right = 316.5
+offset_bottom = 235.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+
+[node name="GameTitle" type="Label" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_5lu0n")
+theme_override_font_sizes/font_size = 56
+text = "GAME TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = -22
+vertical = true
+
+[node name="Start" type="Label" parent="TextureRect/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(4.42803e-06, 0.5874, 0.762148, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ql3w4")
+theme_override_font_sizes/font_size = 31
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="Label" parent="TextureRect/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.216534, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ql3w4")
+theme_override_font_sizes/font_size = 31
+text = "OPTIONS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Label" parent="TextureRect/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ql3w4")
+theme_override_font_sizes/font_size = 31
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1

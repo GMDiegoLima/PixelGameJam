@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://cavb3qwy08dpc"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_nmfh5"]
+[ext_resource type="Texture2D" uid="uid://co10hhditgtny" path="res://Assets/UI/menu/background.jpg" id="2_ujcop"]
+[ext_resource type="FontFile" uid="uid://c10a6yw2inefn" path="res://Fonts/DragonHunter-9Ynxj.otf" id="3_516vl"]
+[ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="4_x10rq"]
+[ext_resource type="StyleBox" uid="uid://dkkwwhep1mi7l" path="res://Assets/UI/menu/menubutton.tres" id="5_sokoj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbfwu"]
+bg_color = Color(0.680321, 0.680321, 0.680321, 1)
+skew = Vector2(0.4, 0)
+border_width_left = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 10
+corner_detail = 1
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_color = Color(0, 0, 0, 0.419608)
+shadow_offset = Vector2(2.34, 2.23)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7i52"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swhtn"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -768.0
+offset_bottom = -432.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nmfh5")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 768.0
+scale = Vector2(0.669, 0.669)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ujcop")
+
+[node name="TextAndButtons" type="BoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.077
+anchor_right = 0.981
+anchor_bottom = 0.875
+offset_left = 0.159999
+offset_top = 0.403511
+offset_right = 20.396
+offset_bottom = -36.7782
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/TextAndButtons"]
+custom_minimum_size = Vector2(889, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameTitle" type="Label" parent="Background/TextAndButtons/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.0071798, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_516vl")
+theme_override_font_sizes/font_size = 80
+text = "GAME TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
+custom_minimum_size = Vector2(10, 140)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Play" type="Button" parent="Background/TextAndButtons/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_x10rq")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = ExtResource("5_sokoj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vbfwu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
+action_mode = 0
+text = "PLAY"
+
+[node name="MarginContainer4" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Options" type="Button" parent="Background/TextAndButtons/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_x10rq")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = ExtResource("5_sokoj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vbfwu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
+action_mode = 0
+text = "OPTIONS"
+
+[node name="MarginContainer5" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Exit" type="Button" parent="Background/TextAndButtons/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_x10rq")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = ExtResource("5_sokoj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vbfwu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
+action_mode = 0
+text = "EXIT"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
+custom_minimum_size = Vector2(10, 60)
+layout_mode = 2
+
+[connection signal="pressed" from="Background/TextAndButtons/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Background/TextAndButtons/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Background/TextAndButtons/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

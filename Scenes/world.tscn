@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0gt1rns77j42"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_uv7jn"]
+[ext_resource type="PackedScene" uid="uid://brd4rqnatwnim" path="res://Scenes/player.tscn" id="2_t5ye4"]
+[ext_resource type="PackedScene" uid="uid://dlf3gcttnxoqo" path="res://Scenes/tree.tscn" id="3_3krrm"]
+[ext_resource type="PackedScene" uid="uid://dqs76bxdrd2ys" path="res://Scenes/axe.tscn" id="4_4ujcc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ipu3g"]
+bounce = 1.0
+
+[node name="World" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_uv7jn")
+
+[node name="world_limit" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="world_limit"]
+position = Vector2(384, 224)
+physics_material_override = SubResource("PhysicsMaterial_ipu3g")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world_limit/StaticBody2D"]
+position = Vector2(0, 8)
+scale = Vector2(12.6587, 12.0452)
+polygon = PackedVector2Array(78.5067, 57.6, 78.5067, -61.8667, -85.3333, -61.8667, -85.3333, -44.8, -85.3333, 57.6, 64.8533, 57.6, 64.8533, 40.5333, -71.68, 40.5333, -71.68, -44.8, 64.8533, -44.8, 64.8533, 57.6)
+
+[node name="player" parent="." instance=ExtResource("2_t5ye4")]
+unique_name_in_owner = true
+position = Vector2(104, 64)
+collision_mask = 15
+
+[node name="tree" parent="." instance=ExtResource("3_3krrm")]
+position = Vector2(-16, -56)
+
+[node name="tree2" parent="." instance=ExtResource("3_3krrm")]
+position = Vector2(232, -24)
+
+[node name="tree3" parent="." instance=ExtResource("3_3krrm")]
+position = Vector2(64, 104)
+
+[node name="drops" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="axe" parent="." instance=ExtResource("4_4ujcc")]
+position = Vector2(128, -80)

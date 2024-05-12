@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://vs8mqrri1nc7"]
+
+[ext_resource type="Texture2D" uid="uid://burtsgy14j4sq" path="res://Assets/Items/stick.png" id="1_umka3"]
+[ext_resource type="Script" path="res://Scripts/stick.gd" id="2_kgasq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5b2g0"]
+radius = 1501.48
+
+[node name="stick" type="Sprite2D" groups=["stick"]]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_umka3")
+script = ExtResource("2_kgasq")
+
+[node name="collect_area" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collect_area"]
+shape = SubResource("CircleShape2D_5b2g0")
+debug_color = Color(0, 0.65098, 0.0509804, 0.254902)
+
+[connection signal="body_entered" from="collect_area" to="." method="_on_collect_area_body_entered"]
+[connection signal="body_exited" from="collect_area" to="." method="_on_collect_area_body_exited"]

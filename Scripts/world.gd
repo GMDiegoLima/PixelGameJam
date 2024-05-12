@@ -11,3 +11,5 @@ func _process(_delta):
 		else:
 			get_tree().paused = true
 			add_child(options_scene.instantiate())
+			get_node("/root/World/options").position = %player.position
+			get_node("/root/World/options").scale = Vector2(0.25, 0.25)

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://brd4rqnatwnim"]
+
+[ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_267ud"]
+[ext_resource type="Texture2D" uid="uid://dy5xkg6vuvngy" path="res://icon.png" id="2_yjl7g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_losym"]
+atlas = ExtResource("2_yjl7g")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oawqe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_losym")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_t1vaq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76lxl"]
+size = Vector2(32, 32)
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+process_mode = 1
+visibility_layer = 15
+script = ExtResource("1_267ud")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.13, 0.13)
+sprite_frames = SubResource("SpriteFrames_oawqe")
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendSpace2D_t1vaq")
+parameters/blend_position = Vector2(0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_76lxl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+limit_smoothed = true
+position_smoothing_enabled = true

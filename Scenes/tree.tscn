@@ -1,45 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlf3gcttnxoqo"]
+[gd_scene load_steps=6 format=3 uid="uid://dlf3gcttnxoqo"]
 
-[ext_resource type="Texture2D" uid="uid://cg7siklusmxx0" path="res://Assets/Environment/tree.png" id="1_qud3a"]
+[ext_resource type="Texture2D" uid="uid://pananxvn363c" path="res://Assets/Environment/tree.png" id="1_qud3a"]
 [ext_resource type="Script" path="res://Scripts/tree.gd" id="2_xisk0"]
+[ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="3_i8twn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ylgbg"]
-radius = 56.6667
+radius = 141.667
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xpxs0"]
-radius = 196.695
+radius = 383.348
 
 [node name="tree" type="Sprite2D"]
 texture_filter = 1
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("1_qud3a")
 script = ExtResource("2_xisk0")
 
 [node name="colision_area" type="StaticBody2D" parent="."]
-position = Vector2(-3.33333, 216.667)
+position = Vector2(-4.76837e-07, 410)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="colision_area"]
-scale = Vector2(1, 0.816)
+position = Vector2(-8.33333, 6.66665)
+scale = Vector2(1, 0.575)
 shape = SubResource("CircleShape2D_ylgbg")
 debug_color = Color(0.997289, 0, 0.169209, 0.42)
 
 [node name="gather_area" type="Area2D" parent="."]
-position = Vector2(-3.33333, 216.667)
+position = Vector2(-2.84217e-14, 410)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gather_area"]
+position = Vector2(0, 23.3333)
+scale = Vector2(1, 0.8)
 shape = SubResource("CircleShape2D_xpxs0")
 debug_color = Color(0.579312, 0.552305, 0, 0.42)
 
 [node name="interact" type="Label" parent="."]
 visible = false
-offset_left = 30.0
-offset_top = 103.333
-offset_right = 265.0
-offset_bottom = 148.333
-theme_override_font_sizes/font_size = 32
-text = "Press E to chop"
+offset_left = 91.6667
+offset_top = 150.0
+offset_right = 627.667
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_fonts/font = ExtResource("3_i8twn")
+theme_override_font_sizes/font_size = 40
+text = "Press E To Chop"
 horizontal_alignment = 1
 
 [connection signal="body_entered" from="gather_area" to="." method="_on_gather_area_body_entered"]

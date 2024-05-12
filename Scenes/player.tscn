@@ -1,17 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://brd4rqnatwnim"]
 
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_267ud"]
-[ext_resource type="Texture2D" uid="uid://dy5xkg6vuvngy" path="res://icon.png" id="2_yjl7g"]
+[ext_resource type="Texture2D" uid="uid://yp4txxgkk3ml" path="res://Assets/Characters/image.png" id="2_wnqdu"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_losym"]
-atlas = ExtResource("2_yjl7g")
-region = Rect2(0, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_l251a"]
+atlas = ExtResource("2_wnqdu")
+region = Rect2(0, 0, 455, 588)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oawqe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_losym")
+"texture": SubResource("AtlasTexture_l251a")
 }],
 "loop": true,
 "name": &"default",
@@ -29,7 +29,7 @@ visibility_layer = 15
 script = ExtResource("1_267ud")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.13, 0.13)
+scale = Vector2(0.065, 0.065)
 sprite_frames = SubResource("SpriteFrames_oawqe")
 autoplay = "default"
 

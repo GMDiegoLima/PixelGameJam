@@ -19,7 +19,9 @@ script = ExtResource("2_1iva5")
 collision_layer = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="build_area"]
+position = Vector2(250, 0)
 shape = SubResource("RectangleShape2D_bp31o")
+debug_color = Color(0.766112, 0.447925, 0, 0.42)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 256

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/options.gd" id="1_sniew"]
 [ext_resource type="Texture2D" uid="uid://bpy38wpe7eg1j" path="res://Assets/UI/menu/bg_options.png" id="2_m25qp"]
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="4_gaadm"]
-[ext_resource type="AudioStream" uid="uid://dy2np861tfnsx" path="res://Audio/coin.wav" id="5_vcaxk"]
+[ext_resource type="AudioStream" uid="uid://c1cfhjk7ma502" path="res://Audio/sfx/loop_options_sfx.mp3" id="5_aug7u"]
 [ext_resource type="StyleBox" uid="uid://dkkwwhep1mi7l" path="res://Assets/UI/menu/menubutton.tres" id="5_wfgwl"]
 
 [sub_resource type="Gradient" id="Gradient_ft88h"]
@@ -246,8 +246,8 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
 action_mode = 0
 text = "BACK"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_vcaxk")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aug7u")
 autoplay = true
 bus = &"sfx"
 

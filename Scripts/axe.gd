@@ -17,12 +17,12 @@ func link_axe():
 	global_position = Vector2(player.global_position.x+20, player.global_position.y)
 	reparent(player, true)
 
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("interact") and !has_axe and can_get_axe:
 		link_axe()
 
-func _on_area_2d_body_entered(_body):
+func _on_area_2d_body_entered(body):
 	can_get_axe = true
 
-func _on_area_2d_body_exited(_body):
+func _on_area_2d_body_exited(body):
 	can_get_axe = false

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0gt1rns77j42"]
+[gd_scene load_steps=16 format=3 uid="uid://d0gt1rns77j42"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_uv7jn"]
 [ext_resource type="PackedScene" uid="uid://brd4rqnatwnim" path="res://Scenes/player.tscn" id="2_t5ye4"]
 [ext_resource type="PackedScene" uid="uid://dlf3gcttnxoqo" path="res://Scenes/tree.tscn" id="3_3krrm"]
+[ext_resource type="PackedScene" uid="uid://cmwb0v04un7jb" path="res://Scenes/factory.tscn" id="3_8y838"]
 [ext_resource type="PackedScene" uid="uid://dqs76bxdrd2ys" path="res://Scenes/axe.tscn" id="4_4ujcc"]
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="5_jtw61"]
 
@@ -37,6 +38,24 @@ size = Vector2(46.25, 406)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s015o"]
 size = Vector2(137, 194.5)
+
+[sub_resource type="Curve2D" id="Curve2D_pt5qk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -475, -98, 0, 0, 0, 0, -433, 23, 0, 0, 0, 0, -301, 12, 0, 0, 0, 0, -152, 38)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_k8emw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -476, -97, 0, 0, 0, 0, -475, 1, 0, 0, 0, 0, -448, 198)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_v43bv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -475, -97, 0, 0, 0, 0, -192, -56, 0, 0, 0, 0, 34, -89)
+}
+point_count = 3
 
 [node name="World" type="Node2D"]
 process_mode = 3
@@ -123,7 +142,7 @@ scale = Vector2(12.6587, 12.0452)
 polygon = PackedVector2Array(78.5067, 57.6, 78.5067, -61.8667, -85.3333, -61.8667, -85.3333, -44.8, -85.3333, 57.6, 64.8533, 57.6, 64.8533, 40.5333, -71.68, 40.5333, -71.68, -44.8, 64.8533, -44.8, 64.8533, 57.6)
 
 [node name="river" type="Node2D" parent="."]
-position = Vector2(1040, 16)
+position = Vector2(694, 16)
 
 [node name="river_water" type="Area2D" parent="river"]
 collision_layer = 64
@@ -156,25 +175,51 @@ position = Vector2(-328, 208)
 position = Vector2(-519.285, 197.25)
 shape = SubResource("RectangleShape2D_s015o")
 
+[node name="factory" parent="." instance=ExtResource("3_8y838")]
+position = Vector2(-405, -212)
+
+[node name="human_paths" type="Node" parent="."]
+
+[node name="human_path1" type="Path2D" parent="human_paths"]
+curve = SubResource("Curve2D_pt5qk")
+
+[node name="follow" type="PathFollow2D" parent="human_paths/human_path1"]
+position = Vector2(-475, -98)
+rotation = 1.2367
+
+[node name="human_path2" type="Path2D" parent="human_paths"]
+curve = SubResource("Curve2D_k8emw")
+
+[node name="follow" type="PathFollow2D" parent="human_paths/human_path2"]
+position = Vector2(-476, -97)
+rotation = 1.56059
+
+[node name="human_path3" type="Path2D" parent="human_paths"]
+curve = SubResource("Curve2D_v43bv")
+
+[node name="follow" type="PathFollow2D" parent="human_paths/human_path3"]
+position = Vector2(-475, -97)
+rotation = 0.143875
+
 [node name="player" parent="." instance=ExtResource("2_t5ye4")]
 unique_name_in_owner = true
-position = Vector2(104, 64)
+position = Vector2(-242, 64)
 collision_mask = 383
 
 [node name="tree" parent="." instance=ExtResource("3_3krrm")]
-position = Vector2(-16, -56)
+position = Vector2(-362, -56)
 
 [node name="tree2" parent="." instance=ExtResource("3_3krrm")]
-position = Vector2(232, -24)
+position = Vector2(-114, -24)
 
 [node name="tree3" parent="." instance=ExtResource("3_3krrm")]
-position = Vector2(64, 104)
+position = Vector2(-282, 104)
 
 [node name="drops" type="Node" parent="."]
 unique_name_in_owner = true
 
 [node name="axe" parent="." instance=ExtResource("4_4ujcc")]
-position = Vector2(128, -80)
+position = Vector2(-218, -80)
 
 [connection signal="body_entered" from="river/river_water" to="player" method="_on_river_water_body_entered"]
 [connection signal="body_exited" from="river/river_water" to="player" method="_on_river_water_body_exited"]

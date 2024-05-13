@@ -28,19 +28,19 @@ func build():
 			$"../river/bridge/CollisionShape2D".disabled = true
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+50, $"../river/bridge/bridge_spawn".global_position.y)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x-25, $"../river/bridge/bridge_spawn".global_position.y)
 		2:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+100, $"../river/bridge/bridge_spawn".global_position.y)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+75, $"../river/bridge/bridge_spawn".global_position.y)
 		3:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+150, $"../river/bridge/bridge_spawn".global_position.y)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+175, $"../river/bridge/bridge_spawn".global_position.y)
 		4:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+200, $"../river/bridge/bridge_spawn".global_position.y)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+275, $"../river/bridge/bridge_spawn".global_position.y)
 		5:
 			get_tree().change_scene_to_file("res://Scenes/world.tscn")
 

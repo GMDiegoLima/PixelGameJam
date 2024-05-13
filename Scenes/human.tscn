@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://bo5vplnu0gnix"]
+
+[ext_resource type="Script" path="res://Scripts/human.gd" id="1_cgn8f"]
+[ext_resource type="Texture2D" uid="uid://yp4txxgkk3ml" path="res://Assets/Characters/image.png" id="1_xhr0k"]
+
+[sub_resource type="Curve2D" id="Curve2D_6xl3c"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -407, -136, 0, 0, 0, 0, -408, -98, 0, 0, 0, 0, -475, -98)
+}
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w7viy"]
+radius = 38.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1308j"]
+atlas = ExtResource("1_xhr0k")
+region = Rect2(0, 0, 455, 588)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3fyv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1308j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_shl1t"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -475, -98, 0, 0, 0, 0, -433, 23, 0, 0, 0, 0, -301, 12, 0, 0, 0, 0, -152, 38)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_wh3uq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -476, -97, 0, 0, 0, 0, -475, 1, 0, 0, 0, 0, -448, 198)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_yqc6b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -475, -97, 0, 0, 0, 0, -192, -56, 0, 0, 0, 0, 34, -89)
+}
+point_count = 3
+
+[node name="human_spawned" type="Path2D"]
+curve = SubResource("Curve2D_6xl3c")
+script = ExtResource("1_cgn8f")
+
+[node name="wait_to_keep_walking" type="Timer" parent="."]
+one_shot = true
+
+[node name="human_first_path" type="PathFollow2D" parent="."]
+position = Vector2(-407, -136)
+rotates = false
+loop = false
+
+[node name="human" type="Node2D" parent="human_first_path" groups=["human"]]
+
+[node name="colision" type="Area2D" parent="human_first_path/human"]
+collision_layer = 512
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="human_first_path/human/colision"]
+position = Vector2(407, 136)
+shape = SubResource("CircleShape2D_w7viy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="human_first_path/human"]
+position = Vector2(407, 136)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_p3fyv")
+
+[node name="human_path1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_shl1t")
+
+[node name="follow" type="PathFollow2D" parent="human_path1"]
+position = Vector2(-475, -98)
+rotation = 1.2367
+rotates = false
+
+[node name="human_path2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_wh3uq")
+
+[node name="follow" type="PathFollow2D" parent="human_path2"]
+position = Vector2(-476, -97)
+rotation = 1.56059
+rotates = false
+
+[node name="human_path3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_yqc6b")
+
+[node name="follow" type="PathFollow2D" parent="human_path3"]
+position = Vector2(-475, -97)
+rotation = 0.143875
+rotates = false
+loop = false
+
+[connection signal="timeout" from="wait_to_keep_walking" to="." method="_on_wait_to_keep_walking_timeout"]

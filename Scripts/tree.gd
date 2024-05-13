@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Node2D
 
 var can_chop: bool = false
 var tree_life: int = 1
@@ -11,8 +11,7 @@ func drop_item(x_pos, y_post):
 
 func _process(_delta):
 	if can_chop and Input.is_action_just_pressed("interact") and tree_life > 0:
-		if has_node("/root/World/player/axe"):
-			tree_life -= 1
+		$AnimationPlayer.play("hit")
 	elif tree_life == 0:
 		call_deferred("free")
 		drop_item(global_position.x, global_position.y)
@@ -22,14 +21,17 @@ func _process(_delta):
 		drop_item(global_position.x, global_position.y)
 
 func _on_gather_area_body_entered(_body):
-	$interact.visible = true
+	$"../UI/corner_label".visible = true
 	if has_node("/root/World/player/axe"):
-		$interact.text = "Press E to chop"
+		$"../UI/corner_label".text = "Press E to chop"
 		can_chop = true
 	else:
-		$interact.text = "You need a axe to chop"
+		$"../UI/corner_label".text = "You need a axe to chop"
 		can_chop = false
 
 func _on_gather_area_body_exited(_body):
-	$interact.visible = false
+	$"../UI/corner_label".visible = false
 	can_chop = false
+
+func _on_animation_player_animation_finished(_anim_name):
+	tree_life -= 1

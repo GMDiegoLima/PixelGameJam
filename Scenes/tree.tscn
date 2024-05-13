@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlf3gcttnxoqo"]
+[gd_scene load_steps=9 format=3 uid="uid://dlf3gcttnxoqo"]
 
-[ext_resource type="Texture2D" uid="uid://pananxvn363c" path="res://Assets/Environment/tree.png" id="1_qud3a"]
 [ext_resource type="Script" path="res://Scripts/tree.gd" id="2_xisk0"]
-[ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="3_i8twn"]
+[ext_resource type="Texture2D" uid="uid://7807bfn3oqsd" path="res://Assets/Environment/tree_top.png" id="2_ypjif"]
+[ext_resource type="Texture2D" uid="uid://cx75k8m8la6dw" path="res://Assets/Environment/tree_bot.png" id="3_04uex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ylgbg"]
 radius = 141.667
@@ -10,14 +10,62 @@ radius = 141.667
 [sub_resource type="CircleShape2D" id="CircleShape2D_xpxs0"]
 radius = 383.348
 
-[node name="tree" type="Sprite2D"]
-texture_filter = 1
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("1_qud3a")
+[sub_resource type="Animation" id="Animation_g5qou"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_m6onk"]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bttw8"]
+_data = {
+"RESET": SubResource("Animation_g5qou"),
+"hit": SubResource("Animation_m6onk")
+}
+
+[node name="tree" type="Node2D"]
 script = ExtResource("2_xisk0")
 
+[node name="top" type="Marker2D" parent="."]
+position = Vector2(0, 37)
+scale = Vector2(0.12, 0.12)
+
+[node name="top_sprite" type="Sprite2D" parent="top"]
+position = Vector2(0, -408.333)
+texture = ExtResource("2_ypjif")
+
+[node name="bot" type="Sprite2D" parent="."]
+position = Vector2(0, 48)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("3_04uex")
+
 [node name="colision_area" type="StaticBody2D" parent="."]
-position = Vector2(-4.76837e-07, 410)
+position = Vector2(-5.72204e-08, 49.2)
+scale = Vector2(0.12, 0.12)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="colision_area"]
@@ -27,26 +75,20 @@ shape = SubResource("CircleShape2D_ylgbg")
 debug_color = Color(0.997289, 0, 0.169209, 0.42)
 
 [node name="gather_area" type="Area2D" parent="."]
-position = Vector2(-2.84217e-14, 410)
-collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="gather_area"]
-position = Vector2(0, 23.3333)
-scale = Vector2(1, 0.8)
+[node name="CollisionShape2D_pick" type="CollisionShape2D" parent="gather_area"]
+position = Vector2(-7.10543e-15, 52)
+scale = Vector2(0.12, 0.096)
 shape = SubResource("CircleShape2D_xpxs0")
 debug_color = Color(0.579312, 0.552305, 0, 0.42)
 
-[node name="interact" type="Label" parent="."]
-visible = false
-offset_left = 91.6667
-offset_top = 150.0
-offset_right = 627.667
-offset_bottom = 262.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.6)
-theme_override_fonts/font = ExtResource("3_i8twn")
-theme_override_font_sizes/font_size = 40
-text = "Press E To Chop"
-horizontal_alignment = 1
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bttw8")
+}
 
 [connection signal="body_entered" from="gather_area" to="." method="_on_gather_area_body_entered"]
 [connection signal="body_exited" from="gather_area" to="." method="_on_gather_area_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

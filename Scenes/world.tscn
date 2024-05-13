@@ -1,21 +1,120 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0gt1rns77j42"]
+[gd_scene load_steps=12 format=3 uid="uid://d0gt1rns77j42"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_uv7jn"]
 [ext_resource type="PackedScene" uid="uid://brd4rqnatwnim" path="res://Scenes/player.tscn" id="2_t5ye4"]
 [ext_resource type="PackedScene" uid="uid://dlf3gcttnxoqo" path="res://Scenes/tree.tscn" id="3_3krrm"]
 [ext_resource type="PackedScene" uid="uid://dqs76bxdrd2ys" path="res://Scenes/axe.tscn" id="4_4ujcc"]
+[ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="5_jtw61"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy2a5"]
+bg_color = Color(0, 0, 0, 0.243)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5x5r"]
+bg_color = Color(9.14484e-07, 0.721952, 0.294343, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ipu3g"]
 bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wr5ta"]
+size = Vector2(444, 995)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7rgk"]
+size = Vector2(46.25, 406)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s015o"]
+size = Vector2(137, 194.5)
 
 [node name="World" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_uv7jn")
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -206.0
+offset_right = 206.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_uy2a5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h5x5r")
+max_value = 50.0
+step = 1.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -19.5
+offset_right = 19.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="current" type="Label" parent="UI/ProgressBar/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jtw61")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 1
+
+[node name="objective" type="Label" parent="UI/ProgressBar/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jtw61")
+theme_override_font_sizes/font_size = 8
+text = "/ 50"
+horizontal_alignment = 1
+
+[node name="corner_label" type="Label" parent="UI" groups=["corner_label"]]
+visible = false
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -328.0
+offset_top = -63.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_jtw61")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="world_limit" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="world_limit"]
 position = Vector2(384, 224)
+collision_layer = 256
 physics_material_override = SubResource("PhysicsMaterial_ipu3g")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world_limit/StaticBody2D"]
@@ -23,10 +122,44 @@ position = Vector2(0, 8)
 scale = Vector2(12.6587, 12.0452)
 polygon = PackedVector2Array(78.5067, 57.6, 78.5067, -61.8667, -85.3333, -61.8667, -85.3333, -44.8, -85.3333, 57.6, 64.8533, 57.6, 64.8533, 40.5333, -71.68, 40.5333, -71.68, -44.8, 64.8533, -44.8, 64.8533, 57.6)
 
+[node name="river" type="Node2D" parent="."]
+position = Vector2(1040, 16)
+
+[node name="river_water" type="Area2D" parent="river"]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="river/river_water"]
+position = Vector2(-226, 193.5)
+shape = SubResource("RectangleShape2D_wr5ta")
+debug_color = Color(2.59906e-06, 0.598663, 0.707638, 0.42)
+
+[node name="swim" type="Area2D" parent="river"]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="river/swim"]
+position = Vector2(-474, 500)
+shape = SubResource("RectangleShape2D_e7rgk")
+debug_color = Color(0.354432, 0.482208, 1, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="river/swim"]
+position = Vector2(-475, -105)
+shape = SubResource("RectangleShape2D_e7rgk")
+debug_color = Color(0.352941, 0.482353, 1, 0.419608)
+
+[node name="bridge" type="Area2D" parent="river"]
+collision_layer = 16
+
+[node name="bridge_spawn" type="Marker2D" parent="river/bridge"]
+position = Vector2(-328, 208)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="river/bridge"]
+position = Vector2(-519.285, 197.25)
+shape = SubResource("RectangleShape2D_s015o")
+
 [node name="player" parent="." instance=ExtResource("2_t5ye4")]
 unique_name_in_owner = true
 position = Vector2(104, 64)
-collision_mask = 15
+collision_mask = 383
 
 [node name="tree" parent="." instance=ExtResource("3_3krrm")]
 position = Vector2(-16, -56)
@@ -42,3 +175,8 @@ unique_name_in_owner = true
 
 [node name="axe" parent="." instance=ExtResource("4_4ujcc")]
 position = Vector2(128, -80)
+
+[connection signal="body_entered" from="river/river_water" to="player" method="_on_river_water_body_entered"]
+[connection signal="body_exited" from="river/river_water" to="player" method="_on_river_water_body_exited"]
+[connection signal="body_entered" from="river/bridge" to="player" method="_on_bridge_body_entered"]
+[connection signal="body_exited" from="river/bridge" to="player" method="_on_bridge_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlf3gcttnxoqo"]
+[gd_scene load_steps=14 format=3 uid="uid://dlf3gcttnxoqo"]
 
 [ext_resource type="Script" path="res://Scripts/tree.gd" id="2_xisk0"]
 [ext_resource type="Texture2D" uid="uid://7807bfn3oqsd" path="res://Assets/Environment/tree_top.png" id="2_ypjif"]
@@ -64,22 +64,6 @@ tracks/3/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_m6onk"]
-resource_name = "hit"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("top:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0872665, -0.0872665, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_hk3bu"]
 resource_name = "fall"
 tracks/0/type = "value"
@@ -131,10 +115,78 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_f22ns"]
+resource_name = "fall_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0472]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("top:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.286275)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 37), Vector2(13, 38)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fall:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_m6onk"]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bttw8"]
 _data = {
 "RESET": SubResource("Animation_g5qou"),
-"fall": SubResource("Animation_hk3bu"),
+"fall_left": SubResource("Animation_hk3bu"),
+"fall_right": SubResource("Animation_f22ns"),
 "hit": SubResource("Animation_m6onk")
 }
 
@@ -166,14 +218,14 @@ shape = SubResource("CircleShape2D_ylgbg")
 debug_color = Color(0.997289, 0, 0.169209, 0.42)
 
 [node name="gather_area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 257
 
 [node name="CollisionShape2D_pick" type="CollisionShape2D" parent="gather_area"]
 position = Vector2(-7.10543e-15, 52)
 scale = Vector2(0.12, 0.096)
 shape = SubResource("CircleShape2D_xpxs0")
 debug_color = Color(0.579312, 0.552305, 0, 0.42)
-
-[node name="Node2D" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

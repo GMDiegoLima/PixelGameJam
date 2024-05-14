@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cx47dhifhfbqv"]
 
-[ext_resource type="AudioStream" uid="uid://hl2p2c0nwjv4" path="res://Audio/Overworld.mp3" id="1_tl6w4"]
+[ext_resource type="AudioStream" uid="uid://o78olmhxkxyp" path="res://Audio/Otters_Bevy.mp3" id="1_liue7"]
 
 [node name="MenuBackgroundMusic" type="AudioStreamPlayer2D"]
 process_mode = 3
-stream = ExtResource("1_tl6w4")
+stream = ExtResource("1_liue7")
 autoplay = true
 bus = &"music"

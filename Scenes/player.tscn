@@ -43,7 +43,6 @@ tree_root = SubResource("AnimationNodeBlendSpace2D_t1vaq")
 parameters/blend_position = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_76lxl")
 
 [node name="Camera" type="Camera2D" parent="."]

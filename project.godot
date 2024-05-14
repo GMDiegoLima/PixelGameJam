@@ -34,6 +34,7 @@ window/size/viewport_width=768
 window/size/viewport_height=432
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://Assets/UI/cursor.png"
 
 [file_customization]

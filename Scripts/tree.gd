@@ -30,9 +30,8 @@ func _on_gather_area_body_exited(body):
 func _on_animation_player_animation_finished(anim_name):
 	tree_life -= 1
 	if tree_life == 0:
-		# ["fall_left", "fall_right"].pick_random()
-		$AnimationPlayer.play("fall")
-	if anim_name == "fall":
+		$AnimationPlayer.play(["fall_left", "fall_right"].pick_random())
+	if anim_name in ["fall_left", "fall_right"]:
 		call_deferred("free")
 		drop_item(global_position.x, global_position.y)
 		drop_item(global_position.x, global_position.y)

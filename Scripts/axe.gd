@@ -11,18 +11,20 @@ func link_axe():
 		for child in player.get_children():
 			if child.is_in_group("stick"):
 				player.has_stick = false
+				child.visible = true
 				child.global_position = global_position
 				child.reparent(get_node("/root/World/drops"), true)
 	# set the axe to the player
-	global_position = Vector2(player.global_position.x+20, player.global_position.y)
+	visible = false
+	# global_position = Vector2(player.global_position.x+5, player.global_position.y)
 	reparent(player, true)
 
 func _process(delta):
 	if Input.is_action_just_pressed("interact") and !has_axe and can_get_axe:
 		link_axe()
 
-func _on_area_2d_body_entered(body):
+func _on_pick_area_body_entered(body):
 	can_get_axe = true
 
-func _on_area_2d_body_exited(body):
+func _on_pick_area_body_exited(body):
 	can_get_axe = false

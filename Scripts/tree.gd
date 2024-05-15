@@ -18,9 +18,11 @@ func _on_gather_area_body_entered(body):
 	$"../UI/corner_label".visible = true
 	if has_node("/root/World/player/axe"):
 		$"../UI/corner_label".text = "Press E to chop"
+		%player.tree_can_chop = true
 		can_chop = true
 	else:
 		$"../UI/corner_label".text = "You need a axe to chop"
+		%player.tree_can_chop = false
 		can_chop = false
 
 func _on_gather_area_body_exited(body):
@@ -32,6 +34,7 @@ func _on_animation_player_animation_finished(anim_name):
 	if tree_life == 0:
 		$AnimationPlayer.play(["fall_left", "fall_right"].pick_random())
 	if anim_name in ["fall_left", "fall_right"]:
+		%player.tree_can_chop = false
 		call_deferred("free")
 		drop_item(global_position.x, global_position.y)
 		drop_item(global_position.x, global_position.y)

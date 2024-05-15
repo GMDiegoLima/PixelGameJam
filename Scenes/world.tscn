@@ -3,9 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_uv7jn"]
 [ext_resource type="PackedScene" uid="uid://brd4rqnatwnim" path="res://Scenes/player.tscn" id="2_t5ye4"]
 [ext_resource type="PackedScene" uid="uid://dlf3gcttnxoqo" path="res://Scenes/tree.tscn" id="3_3krrm"]
-[ext_resource type="PackedScene" uid="uid://cmwb0v04un7jb" path="res://Scenes/factory.tscn" id="3_8y838"]
+[ext_resource type="PackedScene" uid="uid://cmwb0v04un7jb" path="res://Scenes/industry.tscn" id="3_8y838"]
 [ext_resource type="PackedScene" uid="uid://dqs76bxdrd2ys" path="res://Scenes/axe.tscn" id="4_4ujcc"]
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="5_jtw61"]
+[ext_resource type="Texture2D" uid="uid://cglhp1clvoqap" path="res://Assets/Items/axe.png" id="7_wqgpl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy2a5"]
 bg_color = Color(0, 0, 0, 0.243)
@@ -32,9 +33,6 @@ bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wr5ta"]
 size = Vector2(444, 995)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7rgk"]
-size = Vector2(46.25, 406)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s015o"]
 size = Vector2(137, 194.5)
@@ -134,19 +132,6 @@ position = Vector2(-226, 193.5)
 shape = SubResource("RectangleShape2D_wr5ta")
 debug_color = Color(2.59906e-06, 0.598663, 0.707638, 0.42)
 
-[node name="swim" type="Area2D" parent="river"]
-collision_layer = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="river/swim"]
-position = Vector2(-474, 500)
-shape = SubResource("RectangleShape2D_e7rgk")
-debug_color = Color(0.354432, 0.482208, 1, 0.42)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="river/swim"]
-position = Vector2(-475, -105)
-shape = SubResource("RectangleShape2D_e7rgk")
-debug_color = Color(0.352941, 0.482353, 1, 0.419608)
-
 [node name="bridge" type="Area2D" parent="river"]
 collision_layer = 16
 
@@ -181,6 +166,30 @@ unique_name_in_owner = true
 
 [node name="axe" parent="." instance=ExtResource("4_4ujcc")]
 position = Vector2(-218, -80)
+
+[node name="Axe" type="Sprite2D" parent="."]
+position = Vector2(-536.281, -95.9796)
+rotation = -1.96
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("7_wqgpl")
+
+[node name="Axe2" type="Sprite2D" parent="."]
+position = Vector2(-533.281, -100.98)
+rotation = -1.96
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("7_wqgpl")
+
+[node name="Axe3" type="Sprite2D" parent="."]
+position = Vector2(-529.281, -107.98)
+rotation = -1.96
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("7_wqgpl")
+
+[node name="Axe4" type="Sprite2D" parent="."]
+position = Vector2(-526.281, -114.98)
+rotation = -1.96
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("7_wqgpl")
 
 [connection signal="body_entered" from="river/river_water" to="player" method="_on_river_water_body_entered"]
 [connection signal="body_exited" from="river/river_water" to="player" method="_on_river_water_body_exited"]

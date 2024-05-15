@@ -247,6 +247,7 @@ bus = &"sfx"
 [node name="fall" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 43)
 stream = ExtResource("6_81qyi")
+bus = &"sfx"
 
 [connection signal="body_entered" from="gather_area" to="." method="_on_gather_area_body_entered"]
 [connection signal="body_exited" from="gather_area" to="." method="_on_gather_area_body_exited"]

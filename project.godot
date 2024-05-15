@@ -23,6 +23,7 @@ buses/default_bus_layout="res://Audio/default_bus_layout.tres"
 [autoload]
 
 BgMenuMusic="*res://Audio/bg_menu_music.tscn"
+BgGameMusic="*res://Audio/bg_game_music.tscn"
 
 [debug]
 

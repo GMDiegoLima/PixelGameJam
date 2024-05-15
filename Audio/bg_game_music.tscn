@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds24dgsg31sr8"]
+
+[ext_resource type="AudioStream" uid="uid://tgfkypuau766" path="res://Audio/Otters_Bevy.mp3" id="1_oh06q"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_oh06q")
+bus = &"music"

@@ -10,6 +10,8 @@ func _ready():
 		AudioServer.set_bus_volume_db(0, linear_to_db(user_prefs.master_volume))
 		AudioServer.set_bus_volume_db(1, linear_to_db(user_prefs.music_volume))
 		AudioServer.set_bus_volume_db(2, linear_to_db(user_prefs.sfx_volume))
+	BgMenuMusic.playing = false
+	BgGameMusic.playing = true
 
 func _process(_delta):
 	if Input.is_action_just_pressed("esc"):

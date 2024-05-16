@@ -22,6 +22,7 @@ offsets = PackedFloat32Array(0.621277, 1)
 colors = PackedColorArray(0, 0, 0, 0.894118, 0.101961, 0.101961, 0.101961, 0.356863)
 
 [node name="industry" type="Sprite2D"]
+process_mode = 1
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_jf6b6")
 script = ExtResource("2_86iym")

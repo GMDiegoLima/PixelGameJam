@@ -191,6 +191,7 @@ _data = {
 }
 
 [node name="tree" type="Node2D"]
+process_mode = 1
 script = ExtResource("2_xisk0")
 
 [node name="top" type="Marker2D" parent="."]

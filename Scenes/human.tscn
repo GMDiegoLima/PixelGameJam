@@ -46,6 +46,7 @@ animations = [{
 radius = 13.0
 
 [node name="human" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_cgn8f")
 
 [node name="chopping" type="Timer" parent="."]
@@ -97,6 +98,7 @@ loop = false
 sprite_frames = SubResource("SpriteFrames_p3fyv")
 
 [node name="colision" type="Area2D" parent="human"]
+process_mode = 1
 collision_layer = 256
 collision_mask = 4
 
@@ -106,3 +108,4 @@ shape = SubResource("CircleShape2D_w7viy")
 [connection signal="timeout" from="chopping" to="." method="_on_chopping_timeout"]
 [connection signal="timeout" from="human_spawned/wait_to_keep_walking" to="." method="_on_wait_to_keep_walking_timeout"]
 [connection signal="area_entered" from="human/colision" to="." method="_on_colision_area_entered"]
+[connection signal="area_exited" from="human/colision" to="." method="_on_colision_area_exited"]

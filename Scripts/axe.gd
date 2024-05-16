@@ -16,7 +16,6 @@ func link_axe():
 				child.reparent(get_node("/root/World/drops"), true)
 	# set the axe to the player
 	visible = false
-	# global_position = Vector2(player.global_position.x+5, player.global_position.y)
 	reparent(player, true)
 
 func _process(delta):

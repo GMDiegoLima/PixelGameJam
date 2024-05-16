@@ -1,15 +1,18 @@
 extends CharacterBody2D
 
-@export var speed: float = 300.0
-var current_progress = 0
-var has_stick = false
-var has_axe = false
-var tree_can_chop = false
-var can_build = false
-var is_swimming = false
+@export var speed:float = 300.0
+var current_progress:int = 0
+
+var has_stick:bool = false
+@export var inside_tree_range:bool = false
+@export var chop_animation_finished:bool = false
+
+var can_build:bool = false
+var is_swimming:bool = false
 var bridge = preload("res://Scenes/bridge.tscn")
-@onready var animation_tree: AnimationTree = $AnimationTree
-var direction: Vector2 = Vector2.ZERO
+
+@onready var animation_tree:AnimationTree = $AnimationTree
+var direction:Vector2 = Vector2.ZERO
 
 func _ready():
 	animation_tree.active = true
@@ -53,7 +56,7 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	direction = Input.get_vector("a", "d", "w", "s").normalized()
-	if direction and !is_swimming:
+	if direction and !is_swimming and !$AnimationTree["parameters/conditions/chop"]:
 		velocity = direction*speed
 	elif !direction and is_swimming:
 		velocity = Vector2(0, 1)*50
@@ -62,77 +65,6 @@ func _physics_process(_delta):
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
-
-func update_animation_parameters():
-	if has_node("/root/World/player/axe") or has_stick:
-		if tree_can_chop and Input.is_action_just_pressed("interact"):
-			$AnimationTree["parameters/conditions/chop"] = true
-			$AnimationTree["parameters/conditions/idle"] = false
-			$AnimationTree["parameters/conditions/walk"] = false
-			$AnimationTree["parameters/conditions/axe_idle"] = false
-			$AnimationTree["parameters/conditions/axe_walk"] = false
-			$AnimationTree["parameters/conditions/stick_idle"] = false
-			$AnimationTree["parameters/conditions/stick_walk"] = false
-		if velocity == Vector2.ZERO:
-			$AnimationTree["parameters/conditions/idle"] = false
-			$AnimationTree["parameters/conditions/walk"] = false
-			if has_stick:
-				$AnimationTree["parameters/conditions/axe_idle"] = false
-				$AnimationTree["parameters/conditions/axe_walk"] = false
-				$AnimationTree["parameters/conditions/stick_idle"] = true
-				$AnimationTree["parameters/conditions/stick_walk"] = false
-			else:
-				$AnimationTree["parameters/conditions/axe_idle"] = true
-				$AnimationTree["parameters/conditions/axe_walk"] = false
-				$AnimationTree["parameters/conditions/stick_idle"] = false
-				$AnimationTree["parameters/conditions/stick_walk"] = false
-		elif velocity != Vector2.ZERO:
-			$AnimationTree["parameters/conditions/idle"] = false
-			$AnimationTree["parameters/conditions/walk"] = false
-			if has_stick:
-				$AnimationTree["parameters/conditions/axe_idle"] = false
-				$AnimationTree["parameters/conditions/axe_walk"] = false
-				$AnimationTree["parameters/conditions/stick_idle"] = false
-				$AnimationTree["parameters/conditions/stick_walk"] = true
-			else:
-				$AnimationTree["parameters/conditions/axe_idle"] = false
-				$AnimationTree["parameters/conditions/axe_walk"] = true
-				$AnimationTree["parameters/conditions/stick_idle"] = false
-				$AnimationTree["parameters/conditions/stick_walk"] = false
-	else:
-		$AnimationTree["parameters/conditions/axe_idle"] = false
-		$AnimationTree["parameters/conditions/axe_walk"] = false
-		$AnimationTree["parameters/conditions/stick_idle"] = false
-		$AnimationTree["parameters/conditions/stick_walk"] = false
-		if velocity == Vector2.ZERO and !is_swimming:
-			$AnimationTree["parameters/conditions/idle"] = true
-			$AnimationTree["parameters/conditions/walk"] = false
-			$AnimationTree["parameters/conditions/swim"] = is_swimming
-		elif velocity != Vector2.ZERO and !is_swimming:
-			$AnimationTree["parameters/conditions/idle"] = false
-			$AnimationTree["parameters/conditions/walk"] = true
-			$AnimationTree["parameters/conditions/swim"] = is_swimming
-		if is_swimming:
-			$AnimationTree["parameters/conditions/idle"] = false
-			$AnimationTree["parameters/conditions/walk"] = false
-			$AnimationTree["parameters/conditions/swim"] = true
-		elif !is_swimming:
-			$AnimationTree["parameters/conditions/swim"] = false
-	if direction != Vector2.ZERO:
-		$AnimationTree["parameters/idle/blend_position"] = direction
-		$AnimationTree["parameters/walk/blend_position"] = direction
-		$AnimationTree["parameters/axe_idle/blend_position"] = direction
-		$AnimationTree["parameters/axe_walk/blend_position"] = direction
-		$AnimationTree["parameters/stick_idle/blend_position"] = direction
-		$AnimationTree["parameters/stick_walk/blend_position"] = direction
-		$AnimationTree["parameters/chop/blend_position"] = direction
-		$AnimationTree["parameters/swim/blend_position"] = direction
-		if direction == Vector2(1, 0):
-			$water_mask/AnimatedSprite2D.flip_h = false
-		elif  direction == Vector2(-1, 0):
-			$water_mask/AnimatedSprite2D.flip_h = true
-		else:
-			$water_mask/AnimatedSprite2D.flip_h = false
 
 func _on_bridge_body_entered(_body):
 	$"../UI/corner_label".visible = true
@@ -156,9 +88,63 @@ func _on_river_water_body_exited(_body):
 	$water_mask.clip_children = 0
 	$water_mask.self_modulate = Color(0, 0, 0, 0)
 	is_swimming = false
+	
+func update_animation_parameters():
+	if velocity == Vector2.ZERO:
+		if has_stick:
+			$AnimationTree["parameters/conditions/idle"] = false
+			$AnimationTree["parameters/conditions/stick_idle"] = true
+			$AnimationTree["parameters/conditions/stick_walk"] = false
+			$AnimationTree["parameters/conditions/axe_idle"] = false
+		elif has_node("/root/World/player/axe"):
+			if Input.is_action_just_pressed("interact") and inside_tree_range:
+				$AnimationTree["parameters/conditions/chop"] = true
+				$AnimationTree["parameters/conditions/axe_idle"] = false
+				$AnimationTree["parameters/conditions/axe_walk"] = false
+			else:
+				$AnimationTree["parameters/conditions/idle"] = false
+				$AnimationTree["parameters/conditions/stick_idle"] = false
+				$AnimationTree["parameters/conditions/axe_idle"] = true
+				$AnimationTree["parameters/conditions/axe_walk"] = false
+		else:
+			$AnimationTree["parameters/conditions/idle"] = true
+			$AnimationTree["parameters/conditions/walk"] = false
+			$AnimationTree["parameters/conditions/stick_idle"] = false
+			$AnimationTree["parameters/conditions/axe_idle"] = false
+	else:
+		if has_stick:
+			$AnimationTree["parameters/conditions/walk"] = false
+			$AnimationTree["parameters/conditions/stick_idle"] = false
+			$AnimationTree["parameters/conditions/stick_walk"] = true
+			$AnimationTree["parameters/conditions/axe_walk"] = false
+		elif has_node("/root/World/player/axe"):
+			$AnimationTree["parameters/conditions/walk"] = false
+			$AnimationTree["parameters/conditions/stick_walk"] = false
+			$AnimationTree["parameters/conditions/axe_idle"] = false
+			$AnimationTree["parameters/conditions/axe_walk"] = true
+		else:
+			$AnimationTree["parameters/conditions/idle"] = false
+			$AnimationTree["parameters/conditions/walk"] = true
+			$AnimationTree["parameters/conditions/stick_walk"] = false
+			$AnimationTree["parameters/conditions/axe_walk"] = false
+	if direction != Vector2.ZERO and !$AnimationTree["parameters/conditions/chop"]:
+		$AnimationTree["parameters/idle/blend_position"] = direction
+		$AnimationTree["parameters/walk/blend_position"] = direction
+		$AnimationTree["parameters/axe_idle/blend_position"] = direction
+		$AnimationTree["parameters/axe_walk/blend_position"] = direction
+		#$AnimationTree["parameters/stick_idle/blend_position"] = direction
+		#$AnimationTree["parameters/stick_walk/blend_position"] = direction
+		$AnimationTree["parameters/chop/blend_position"] = direction
+		$AnimationTree["parameters/swim/blend_position"] = direction
+		if direction == Vector2(1, 0):
+			$water_mask/AnimatedSprite2D.flip_h = false
+		elif  direction == Vector2(-1, 0):
+			$water_mask/AnimatedSprite2D.flip_h = true
+		else:
+			$water_mask/AnimatedSprite2D.flip_h = false
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name in ["chop_down", "chop_up" , "chop_side"]:
+		chop_animation_finished = true
 		$AnimationTree["parameters/conditions/chop"] = false
 		$AnimationTree["parameters/conditions/axe_idle"] = true
-		

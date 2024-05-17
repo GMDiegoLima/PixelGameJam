@@ -51,6 +51,10 @@ func _on_colision_area_entered(area):
 	if !chopping_tree:
 		chopping_tree = area.owner
 
+func _on_colision_area_exited(area):
+	chopping_tree = null
+
 func _on_chopping_timeout():
-	chopping_tree.call_deferred("free")
+	if chopping_tree:
+		chopping_tree.call_deferred("free")
 	can_path = 2

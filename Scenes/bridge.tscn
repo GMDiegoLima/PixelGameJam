@@ -1,25 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://istk10k740sj"]
 
-[ext_resource type="Texture2D" uid="uid://dy5xkg6vuvngy" path="res://icon.png" id="1_1pn2j"]
+[ext_resource type="Texture2D" uid="uid://cn66hb7uod7kq" path="res://Assets/Items/bridge piece sprite.png" id="1_4ytmx"]
 [ext_resource type="Script" path="res://Scripts/bridge.gd" id="2_1iva5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp31o"]
-size = Vector2(572, 496.667)
+size = Vector2(846, 1690)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pv616"]
-size = Vector2(568, 208)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s25y"]
+size = Vector2(17.1946, 6.1512)
 
 [node name="bridge" type="Sprite2D"]
-position = Vector2(-62, -54.5)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_1pn2j")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_4ytmx")
 script = ExtResource("2_1iva5")
 
 [node name="build_area" type="Area2D" parent="."]
 collision_layer = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="build_area"]
-position = Vector2(250, 0)
+position = Vector2(387, 30)
+scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_bp31o")
 debug_color = Color(0.766112, 0.447925, 0, 0.42)
 
@@ -27,7 +27,10 @@ debug_color = Color(0.766112, 0.447925, 0, 0.42)
 collision_layer = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_pv616")
+position = Vector2(-45, 77.4999)
+rotation = -3.14159
+scale = Vector2(40.1289, -171.511)
+shape = SubResource("RectangleShape2D_4s25y")
 debug_color = Color(0.989856, 0.0868646, 0, 0.713726)
 
 [connection signal="body_entered" from="build_area" to="." method="_on_build_area_body_entered"]

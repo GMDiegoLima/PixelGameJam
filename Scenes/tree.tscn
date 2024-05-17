@@ -191,6 +191,7 @@ _data = {
 }
 
 [node name="tree" type="Node2D"]
+process_mode = 1
 script = ExtResource("2_xisk0")
 
 [node name="top" type="Marker2D" parent="."]
@@ -247,6 +248,7 @@ bus = &"sfx"
 [node name="fall" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 43)
 stream = ExtResource("6_81qyi")
+bus = &"sfx"
 
 [connection signal="body_entered" from="gather_area" to="." method="_on_gather_area_body_entered"]
 [connection signal="body_exited" from="gather_area" to="." method="_on_gather_area_body_exited"]

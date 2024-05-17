@@ -1,7 +1,7 @@
 extends Node2D
 
-var can_chop: bool = false
-var tree_life: int = 3
+var chop_area:bool = false
+var tree_life:int = 3
 var stick = preload("res://Scenes/stick.tscn")
 
 func drop_item(x_pos, y_post):
@@ -10,22 +10,25 @@ func drop_item(x_pos, y_post):
 	%drops.add_child(stick_instance)
 
 func _process(delta):
-	if can_chop and Input.is_action_just_pressed("interact") and tree_life > 0:
-		$AnimationPlayer.play("hit")
+	if %player.chop_animation_finished and chop_area and tree_life > 0:
 		$chop_sfx.get_child(randi_range(0, 1)).play()
+		$AnimationPlayer.play("hit")
+		%player.chop_animation_finished = false
+	if tree_life > 0 and has_node("/root/World/player/axe")  and chop_area:
+		$"../UI/corner_label".text = "Press E to chop"
+		%player.inside_tree_range = true
+	elif tree_life > 0 and !has_node("/root/World/player/axe") and chop_area:
+		$"../UI/corner_label".text = "You need a axe to chop"
+		%player.inside_tree_range = false
 
 func _on_gather_area_body_entered(body):
 	$"../UI/corner_label".visible = true
-	if has_node("/root/World/player/axe"):
-		$"../UI/corner_label".text = "Press E to chop"
-		can_chop = true
-	else:
-		$"../UI/corner_label".text = "You need a axe to chop"
-		can_chop = false
+	chop_area = true
 
 func _on_gather_area_body_exited(body):
+	body.inside_tree_range = false
 	$"../UI/corner_label".visible = false
-	can_chop = false
+	chop_area = false
 
 func _on_animation_player_animation_finished(anim_name):
 	tree_life -= 1

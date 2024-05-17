@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bo5vplnu0gnix"]
 
 [ext_resource type="Script" path="res://Scripts/human.gd" id="1_cgn8f"]
-[ext_resource type="Texture2D" uid="uid://yp4txxgkk3ml" path="res://Assets/Characters/image.png" id="1_xhr0k"]
+[ext_resource type="Texture2D" uid="uid://g1uyowjinpv" path="res://Assets/Characters/other idle n walk.png" id="2_ikmof"]
 
 [sub_resource type="Curve2D" id="Curve2D_ra3me"]
 _data = {
@@ -27,15 +27,15 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1308j"]
-atlas = ExtResource("1_xhr0k")
-region = Rect2(0, 0, 455, 588)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaf4l"]
+atlas = ExtResource("2_ikmof")
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p3fyv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1308j")
+"texture": SubResource("AtlasTexture_uaf4l")
 }],
 "loop": true,
 "name": &"default",
@@ -46,6 +46,7 @@ animations = [{
 radius = 13.0
 
 [node name="human" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_cgn8f")
 
 [node name="chopping" type="Timer" parent="."]
@@ -94,17 +95,17 @@ loop = false
 [node name="human" type="Node2D" parent="." groups=["human"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="human"]
-scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_p3fyv")
 
 [node name="colision" type="Area2D" parent="human"]
+process_mode = 1
 collision_layer = 256
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="human/colision"]
-position = Vector2(0, 14)
 shape = SubResource("CircleShape2D_w7viy")
 
 [connection signal="timeout" from="chopping" to="." method="_on_chopping_timeout"]
 [connection signal="timeout" from="human_spawned/wait_to_keep_walking" to="." method="_on_wait_to_keep_walking_timeout"]
 [connection signal="area_entered" from="human/colision" to="." method="_on_colision_area_entered"]
+[connection signal="area_exited" from="human/colision" to="." method="_on_colision_area_exited"]

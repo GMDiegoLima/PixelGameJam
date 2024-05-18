@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds24dgsg31sr8"]
+
+[ext_resource type="AudioStream" uid="uid://dwic1ts6he0a6" path="res://Audio/Overworld(Intro).wav" id="1_ge7t0"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_ge7t0")
+volume_db = -5.0
+bus = &"music"

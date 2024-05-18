@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g6ahtvgttt5u"
-path="res://.godot/imported/otter-hold-idle.png-f616c7a44e817ac1756b7adb570a5a99.ctex"
+uid="uid://cq6iqw166p43t"
+path="res://.godot/imported/human hold axe.png-d5441a18220dca7b2afcc799bcc365d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/otter-hold-idle.png"
-dest_files=["res://.godot/imported/otter-hold-idle.png-f616c7a44e817ac1756b7adb570a5a99.ctex"]
+source_file="res://Assets/Characters/human hold axe.png"
+dest_files=["res://.godot/imported/human hold axe.png-d5441a18220dca7b2afcc799bcc365d3.ctex"]
 
 [params]
 

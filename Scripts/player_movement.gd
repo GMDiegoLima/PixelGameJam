@@ -1,15 +1,19 @@
 extends CharacterBody2D
 
-@export var speed:float = 300.0
+var speed:float = 175.0
 var current_progress:int = 0
 
 var has_stick:bool = false
 @export var inside_tree_range:bool = false
-@export var chop_animation_finished:bool = false
+var chop_animation_finished:bool = false
 
 var can_build:bool = false
-var is_swimming:bool = false
 var bridge = preload("res://Scenes/bridge.tscn")
+
+var is_swimming:bool = false
+var is_being_chased:bool = false
+var grabbed = false
+@onready var chase_music = $"../chase_music"
 
 @onready var animation_tree:AnimationTree = $AnimationTree
 var direction:Vector2 = Vector2.ZERO
@@ -28,40 +32,62 @@ func build():
 				child.can_pick = false
 				child.call_deferred("free")
 				has_stick = false
+	$sfx/building_sfx.play()
 	match current_progress:
 		1:
 			$"../river/bridge/CollisionShape2D".disabled = true
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x-55, $"../river/bridge/bridge_spawn".global_position.y)
-		2:
-			var bridge_instance = bridge.instantiate()
-			$"../river/bridge".add_child(bridge_instance)
 			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x, $"../river/bridge/bridge_spawn".global_position.y)
-		3:
+		5:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
 			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+55, $"../river/bridge/bridge_spawn".global_position.y)
-		4:
+		10:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
 			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+110, $"../river/bridge/bridge_spawn".global_position.y)
-		5:
+		15:
+			var bridge_instance = bridge.instantiate()
+			$"../river/bridge".add_child(bridge_instance)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+165, $"../river/bridge/bridge_spawn".global_position.y)
+		20:
+			var bridge_instance = bridge.instantiate()
+			$"../river/bridge".add_child(bridge_instance)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+220, $"../river/bridge/bridge_spawn".global_position.y)
+		25:
+			var bridge_instance = bridge.instantiate()
+			$"../river/bridge".add_child(bridge_instance)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+285, $"../river/bridge/bridge_spawn".global_position.y)
+		30:
 			get_tree().change_scene_to_file("res://Scenes/world.tscn")
 
 func _process(_delta):
 	if Input.is_action_just_pressed("interact") and can_build and has_stick:
 		build()
-	update_animation_parameters()
+	if !$sfx/steps_sfx.playing and direction and !is_swimming:
+		$sfx/steps_sfx.play()
+	if is_swimming and !$sfx/swim_sfx.playing:
+		$sfx/swim_sfx.play()
+	elif !is_swimming and $sfx/swim_sfx.playing:
+		$sfx/swim_sfx.stop()
 
 func _physics_process(_delta):
+	update_animation_parameters()
+	if is_being_chased and !chase_music.playing:
+		BgGameIntro.stop()
+		BgGameLoop.stop()
+		chase_music.play()
+	elif !is_being_chased and chase_music.playing:
+		chase_music.stop()
+		BgGameLoop.play()
 	direction = Input.get_vector("a", "d", "w", "s").normalized()
-	if direction and !is_swimming and !$AnimationTree["parameters/conditions/chop"]:
+	if direction and !is_swimming and !grabbed and !$AnimationTree["parameters/conditions/chop"]:
 		velocity = direction*speed
 	elif !direction and is_swimming:
-		velocity = Vector2(0, 1)*50
+		velocity = Vector2(0, 1)*100
 	elif direction and is_swimming:
-		velocity = direction*150
+		velocity = direction*80-Vector2(0, -1)*10
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
@@ -132,13 +158,13 @@ func update_animation_parameters():
 		$AnimationTree["parameters/walk/blend_position"] = direction
 		$AnimationTree["parameters/axe_idle/blend_position"] = direction
 		$AnimationTree["parameters/axe_walk/blend_position"] = direction
-		#$AnimationTree["parameters/stick_idle/blend_position"] = direction
-		#$AnimationTree["parameters/stick_walk/blend_position"] = direction
+		$AnimationTree["parameters/stick_idle/blend_position"] = direction
+		$AnimationTree["parameters/stick_walk/blend_position"] = direction
 		$AnimationTree["parameters/chop/blend_position"] = direction
 		$AnimationTree["parameters/swim/blend_position"] = direction
 		if direction == Vector2(1, 0):
 			$water_mask/AnimatedSprite2D.flip_h = false
-		elif  direction == Vector2(-1, 0):
+		elif  direction.x < 0 and direction.x <= direction.y:
 			$water_mask/AnimatedSprite2D.flip_h = true
 		else:
 			$water_mask/AnimatedSprite2D.flip_h = false

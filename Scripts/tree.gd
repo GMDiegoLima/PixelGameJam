@@ -15,20 +15,21 @@ func _process(delta):
 		$AnimationPlayer.play("hit")
 		%player.chop_animation_finished = false
 	if tree_life > 0 and has_node("/root/World/player/axe")  and chop_area:
-		$"../UI/corner_label".text = "Press E to chop"
+		$"../../UI/corner_label".text = "Press E to chop"
 		%player.inside_tree_range = true
 	elif tree_life > 0 and !has_node("/root/World/player/axe") and chop_area:
-		$"../UI/corner_label".text = "You need a axe to chop"
+		$"../../UI/corner_label".text = "You need a axe to chop"
 		%player.inside_tree_range = false
 
 func _on_gather_area_body_entered(body):
-	$"../UI/corner_label".visible = true
+	$"../../UI/corner_label".visible = true
 	chop_area = true
 
 func _on_gather_area_body_exited(body):
-	body.inside_tree_range = false
-	$"../UI/corner_label".visible = false
-	chop_area = false
+	if body.name == "player":
+		body.inside_tree_range = false
+		$"../../UI/corner_label".visible = false
+		chop_area = false
 
 func _on_animation_player_animation_finished(anim_name):
 	tree_life -= 1

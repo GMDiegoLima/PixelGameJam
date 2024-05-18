@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1usqma4tx3jb"
-path="res://.godot/imported/otter hold-walking.png-e6c3f07295e01d3d576ce072e8b502ca.ctex"
+uid="uid://ddiwi84b6xk5m"
+path="res://.godot/imported/human chop (side).png-5fa46acf16f46a6ff879b3d5e5e80a1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/otter hold-walking.png"
-dest_files=["res://.godot/imported/otter hold-walking.png-e6c3f07295e01d3d576ce072e8b502ca.ctex"]
+source_file="res://Assets/Characters/human chop (side).png"
+dest_files=["res://.godot/imported/human chop (side).png-5fa46acf16f46a6ff879b3d5e5e80a1c.ctex"]
 
 [params]
 

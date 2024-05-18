@@ -4,9 +4,10 @@
 [ext_resource type="Script" path="res://Scripts/stick.gd" id="2_kgasq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5b2g0"]
-radius = 545.856
+radius = 663.744
 
 [node name="stick" type="Sprite2D" groups=["stick"]]
+z_index = -1
 rotation = 0.785398
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("1_umka3")

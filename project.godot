@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Pixel Game Jam"
+config/name="Otter Destruction"
+config/description="Otter Destruction is a game about a otter trying to survive the humans destroying the forest."
+config/version="1.0.0"
 run/main_scene="res://Scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
@@ -23,7 +25,8 @@ buses/default_bus_layout="res://Audio/default_bus_layout.tres"
 [autoload]
 
 BgMenuMusic="*res://Audio/bg_menu_music.tscn"
-BgGameMusic="*res://Audio/bg_game_music.tscn"
+BgGameIntro="*res://Audio/bg_game_intro.tscn"
+BgGameLoop="*res://Audio/bg_game_loop.tscn"
 
 [debug]
 
@@ -98,6 +101,9 @@ interact={
 2d_physics/layer_2="Stick"
 2d_physics/layer_3="Tree"
 2d_physics/layer_4="Item"
+2d_physics/layer_5="Humans"
+2d_physics/layer_6="Industry or walls"
+2d_physics/layer_10="World_limit"
 
 [rendering]
 

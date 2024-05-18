@@ -1,53 +1,34 @@
-[gd_scene load_steps=18 format=3 uid="uid://bo5vplnu0gnix"]
+[gd_scene load_steps=14 format=3 uid="uid://bo5vplnu0gnix"]
 
 [ext_resource type="Script" path="res://Scripts/human.gd" id="1_cgn8f"]
 [ext_resource type="Texture2D" uid="uid://g1uyowjinpv" path="res://Assets/Characters/other idle n walk.png" id="2_ikmof"]
 [ext_resource type="Script" path="res://addons/vision_cone_2d/vision_cone_2d.gd" id="2_nydlo"]
 [ext_resource type="Script" path="res://Scripts/human_pursuing.gd" id="2_xxgoi"]
 [ext_resource type="Script" path="res://addons/vision_cone_2d/cone_editor_helper.gd" id="3_pc85n"]
-[ext_resource type="AudioStream" uid="uid://clos41yqwvoqx" path="res://Audio/sfx/Grabbed.wav" id="6_2361j"]
 
 [sub_resource type="Curve2D" id="Curve2D_ra3me"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -406, -136, -6.11393, -5.76664, 6.11393, 5.76664, -387, -95, -29.724, 30.0221, 29.724, -30.0221, -310, -89)
+"points": PackedVector2Array(0, 0, 0, 0, -407, -136, 0, 0, 0, 0, -408, -98, 0, 0, 0, 0, -475, -98)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_0n8v0"]
+[sub_resource type="Curve2D" id="Curve2D_pulu4"]
 _data = {
-"points": PackedVector2Array(-37.4033, -13.1756, 37.4033, 13.1756, -310.924, -88, -31.5594, 5.86916, 31.5594, -5.86916, -175.924, -77, -23.3146, 29.845, 23.3146, -29.845, -64.924, -153, -10.2261, 38.6968, 10.2261, -38.6968, -15, -261)
+"points": PackedVector2Array(0, 0, 0, 0, -475, -98, 0, 0, 0, 0, -433, 23, 0, 0, 0, 0, -301, 12, 0, 0, 0, 0, -152, 38)
 }
 point_count = 4
 
-[sub_resource type="Curve2D" id="Curve2D_y8ol1"]
+[sub_resource type="Curve2D" id="Curve2D_yi8cc"]
 _data = {
-"points": PackedVector2Array(-11.2751, -33.8902, 11.2751, 33.8902, -309.924, -87, -66.0316, -14.3748, 66.0316, 14.3748, -186.924, 15, -60.2923, 34.45, 60.2923, -34.45, 30, 0, -44.047, 67.3542, 44.047, -67.3542, 185, -216)
-}
-point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_jaytm"]
-_data = {
-"points": PackedVector2Array(-21.3409, -87.985, 21.3409, 87.985, -309.924, -87, -61.8438, -12.044, 61.8438, 12.044, -163.924, 67, -115.733, 15.1057, 115.733, -15.1057, 228, 57)
+"points": PackedVector2Array(0, 0, 0, 0, -476, -97, 0, 0, 0, 0, -471, 96, 0, 0, 0, 0, -312, 149)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_g4otm"]
+[sub_resource type="Curve2D" id="Curve2D_e3xfl"]
 _data = {
-"points": PackedVector2Array(8.98392, -66.5793, -8.98392, 66.5793, -310.924, -88, -51.8792, -75.1394, 51.8792, 75.1394, -192.924, 214, -122.493, -1.88076, 122.493, 1.88076, 114, 501)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_2f2sv"]
-_data = {
-"points": PackedVector2Array(8.98392, -66.5793, -8.98392, 66.5793, -309.924, -87, 0, 0, 0, 0, -328.8, 98.2799, 2.08956, -90.7585, -2.08956, 90.7585, -343, 280, -138.843, -61.8361, 138.843, 61.8361, -3, 649)
+"points": PackedVector2Array(0, 0, 0, 0, -475, -97, 0, 0, 0, 0, -356, -27, 0, 0, 0, 0, -121, 5, 0, 0, 0, 0, 18, -86)
 }
 point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_62m5d"]
-_data = {
-"points": PackedVector2Array(39.2904, -64.3344, -39.2904, 64.3344, -309.924, -87, 0, 0, 0, 0, -321.906, -68.9729, 0, 0, 0, 0, -384.752, 27.8113, 22.2861, -68.8483, -22.2861, 68.8483, -443, 115, -19.2823, -53.886, 19.2823, 53.886, -407, 416, -104.823, -74.3071, 104.823, 74.3071, -341, 679)
-}
-point_count = 6
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7shfd"]
 radius = 10.5
@@ -69,27 +50,17 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w7viy"]
-radius = 1.0
+radius = 2.23607
 
 [node name="human_node" type="Node2D"]
 process_mode = 1
-z_index = 1
 script = ExtResource("1_cgn8f")
-
-[node name="sfx" type="Node" parent="."]
-
-[node name="grab_sfx" type="AudioStreamPlayer2D" parent="sfx"]
-stream = ExtResource("6_2361j")
-max_polyphony = 5
-panning_strength = 3.0
-bus = &"sfx"
 
 [node name="chopping" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
 [node name="human_spawned" type="Path2D" parent="."]
-position = Vector2(407, 136)
 curve = SubResource("Curve2D_ra3me")
 
 [node name="wait_to_keep_walking" type="Timer" parent="human_spawned"]
@@ -97,75 +68,38 @@ wait_time = 2.0
 one_shot = true
 
 [node name="follow" type="PathFollow2D" parent="human_spawned"]
-position = Vector2(-406, -136)
-rotation = 2.26213
+position = Vector2(-407, -136)
 rotates = false
 loop = false
 
 [node name="human_path1" type="Path2D" parent="."]
-position = Vector2(406.924, 136)
-curve = SubResource("Curve2D_0n8v0")
+curve = SubResource("Curve2D_pulu4")
 
 [node name="follow" type="PathFollow2D" parent="human_path1"]
-position = Vector2(-310.924, -88)
-rotation = 0.887895
+position = Vector2(-475, -98)
 rotates = false
 loop = false
 
 [node name="human_path2" type="Path2D" parent="."]
-position = Vector2(406.924, 136)
-curve = SubResource("Curve2D_y8ol1")
+curve = SubResource("Curve2D_yi8cc")
 
 [node name="follow" type="PathFollow2D" parent="human_path2"]
-position = Vector2(-309.924, -87)
-rotation = 1.39031
+position = Vector2(-476, -97)
 rotates = false
 loop = false
 
 [node name="human_path3" type="Path2D" parent="."]
-position = Vector2(406.924, 136)
-curve = SubResource("Curve2D_jaytm")
+curve = SubResource("Curve2D_e3xfl")
 
 [node name="follow" type="PathFollow2D" parent="human_path3"]
-position = Vector2(-309.924, -87)
-rotation = 1.70492
-rotates = false
-loop = false
-
-[node name="human_path4" type="Path2D" parent="."]
-position = Vector2(406.924, 136)
-curve = SubResource("Curve2D_g4otm")
-
-[node name="follow" type="PathFollow2D" parent="human_path4"]
-position = Vector2(-310.924, -88)
-rotation = 1.70492
-rotates = false
-loop = false
-
-[node name="human_path5" type="Path2D" parent="."]
-position = Vector2(407, 138)
-curve = SubResource("Curve2D_2f2sv")
-
-[node name="follow" type="PathFollow2D" parent="human_path5"]
-position = Vector2(-309.924, -87)
-rotation = 1.70492
-rotates = false
-loop = false
-
-[node name="human_path6" type="Path2D" parent="."]
-position = Vector2(406, 137)
-curve = SubResource("Curve2D_62m5d")
-
-[node name="follow" type="PathFollow2D" parent="human_path6"]
-position = Vector2(-309.924, -87)
-rotation = 1.70492
+position = Vector2(-475, -97)
 rotates = false
 loop = false
 
 [node name="human" type="CharacterBody2D" parent="." groups=["human"]]
 process_mode = 1
-collision_layer = 16
-collision_mask = 17
+collision_layer = 512
+collision_mask = 512
 script = ExtResource("2_xxgoi")
 
 [node name="grab_area" type="CollisionShape2D" parent="human"]
@@ -174,31 +108,39 @@ position = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_7shfd")
 debug_color = Color(0.987655, 0, 0.310664, 0.42)
 
+[node name="grab" type="Area2D" parent="human"]
+position = Vector2(0.5, 0.5)
+collision_layer = 512
+collision_mask = 512
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="human"]
 sprite_frames = SubResource("SpriteFrames_p3fyv")
 
 [node name="colision" type="Area2D" parent="human"]
 process_mode = 1
-collision_layer = 16
+collision_layer = 512
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="human/colision"]
 shape = SubResource("CircleShape2D_w7viy")
 
 [node name="VisionCone2D" type="Node2D" parent="human" node_paths=PackedStringArray("write_collision_polygon", "write_polygon2d")]
+rotation = -1.5708
 script = ExtResource("2_nydlo")
 angle_deg = 45
 ray_count = 20
 max_distance = 150.0
-collision_layer_mask = 36
+collision_layer_mask = 4
 write_collision_polygon = NodePath("VisionConeArea/VisionConeCollider")
 write_polygon2d = NodePath("VisionConeRenderer")
+debug_lines = true
+debug_shape = true
 
 [node name="VisionConeRenderer" type="Polygon2D" parent="human/VisionCone2D"]
-color = Color(1, 1, 0.6, 0.27451)
+color = Color(0.431373, 0.929412, 0.278431, 0.286275)
 
 [node name="VisionConeArea" type="Area2D" parent="human/VisionCone2D"]
-collision_layer = 16
+collision_layer = 0
 monitorable = false
 
 [node name="VisionConeCollider" type="CollisionPolygon2D" parent="human/VisionCone2D/VisionConeArea"]
@@ -209,6 +151,7 @@ script = ExtResource("3_pc85n")
 
 [connection signal="timeout" from="chopping" to="human" method="_on_chopping_timeout"]
 [connection signal="timeout" from="human_spawned/wait_to_keep_walking" to="human" method="_on_wait_to_keep_walking_timeout"]
+[connection signal="body_entered" from="human/grab" to="human" method="_on_grab_body_entered"]
 [connection signal="area_entered" from="human/colision" to="human" method="_on_colision_area_entered"]
 [connection signal="area_exited" from="human/colision" to="human" method="_on_colision_area_exited"]
 [connection signal="body_entered" from="human/VisionCone2D/VisionConeArea" to="human" method="_on_vision_cone_area_body_entered"]

@@ -5,7 +5,11 @@ extends Sprite2D
 
 func _process(delta):
 	if Input.is_action_just_pressed("interact") and player.can_build:
-		$build_area/CollisionShape2D.disabled = true
+		match player.current_progress:
+			4,9,14,19:
+				print("FOI")
+				$build_area/CollisionShape2D.disabled = true
+				$build_area/CollisionShape2D2.disabled = true
 
 func _on_build_area_body_entered(body):
 	corner_label.visible = true

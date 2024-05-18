@@ -11,9 +11,11 @@ func _ready():
 		AudioServer.set_bus_volume_db(1, linear_to_db(user_prefs.music_volume))
 		AudioServer.set_bus_volume_db(2, linear_to_db(user_prefs.sfx_volume))
 	BgMenuMusic.playing = false
-	BgGameMusic.playing = true
+	BgGameIntro.playing = true
 
 func _process(_delta):
+	#if !BgGameIntro.playing and !$chase_music.playing:
+		#BgGameLoop.playing = true
 	if Input.is_action_just_pressed("esc"):
 		if has_node("/root/World/options"):
 			get_tree().paused = false
@@ -23,4 +25,4 @@ func _process(_delta):
 			get_tree().paused = true
 			add_child(options_scene.instantiate())
 			get_node("/root/World/options").position = %player.position
-			get_node("/root/World/options").scale = Vector2(0.25, 0.25)
+			get_node("/root/World/options").scale = Vector2(0.5, 0.5)

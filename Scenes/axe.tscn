@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/axe.gd" id="2_h2ucl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r3p6c"]
-radius = 600.0
+radius = 475.0
 
 [node name="axe" type="Sprite2D" groups=["axe"]]
 scale = Vector2(0.08, 0.08)
@@ -15,8 +15,9 @@ script = ExtResource("2_h2ucl")
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pick_area"]
+z_index = -1
 shape = SubResource("CircleShape2D_r3p6c")
 debug_color = Color(0.380813, 0.613181, 1.54018e-06, 0.42)
 
 [connection signal="body_entered" from="pick_area" to="." method="_on_pick_area_body_entered"]
-[connection signal="body_exited" from="pick_area" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="pick_area" to="." method="_on_pick_area_body_exited"]

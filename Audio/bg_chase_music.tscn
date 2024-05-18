@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck2xw85qpnyjv"]
+
+[ext_resource type="AudioStream" uid="uid://dpaqf66n8wjkv" path="res://Audio/Chase (InGame).wav" id="1_pco0i"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_pco0i")
+volume_db = -5.0
+bus = &"music"

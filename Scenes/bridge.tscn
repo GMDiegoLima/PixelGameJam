@@ -4,12 +4,13 @@
 [ext_resource type="Script" path="res://Scripts/bridge.gd" id="2_1iva5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp31o"]
-size = Vector2(846, 1690)
+size = Vector2(1070, 365)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s25y"]
 size = Vector2(17.1946, 6.1512)
 
 [node name="bridge" type="Sprite2D"]
+z_index = 4
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_4ytmx")
 script = ExtResource("2_1iva5")
@@ -18,7 +19,13 @@ script = ExtResource("2_1iva5")
 collision_layer = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="build_area"]
-position = Vector2(387, 30)
+position = Vector2(260, -630)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_bp31o")
+debug_color = Color(0.766112, 0.447925, 0, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="build_area"]
+position = Vector2(260, 790)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_bp31o")
 debug_color = Color(0.766112, 0.447925, 0, 0.42)

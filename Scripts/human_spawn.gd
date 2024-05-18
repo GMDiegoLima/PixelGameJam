@@ -7,8 +7,8 @@ func spawn_human():
 	get_node("/root/World/humans").add_child(human_instance)
 	human_instance.global_position = $human_spawn.global_position
 
-#func _ready():
-	#spawn_human()
+func _ready():
+	spawn_human()
 
 func _on_frequency_to_spawn_timeout():
 	spawn_human()

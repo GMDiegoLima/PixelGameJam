@@ -15,25 +15,25 @@
 [ext_resource type="AudioStream" uid="uid://ddk78joqt7e4y" path="res://Audio/sfx/Otter_Footstep.wav" id="13_j6em5"]
 [ext_resource type="AudioStream" uid="uid://d31ydlylt7y25" path="res://Audio/sfx/Otter_Swim.wav" id="14_8irnv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qobsy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qecl3"]
 atlas = ExtResource("3_iv2wv")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(3, 0, 31, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e4okx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcn85"]
 atlas = ExtResource("3_iv2wv")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(34, 0, 31, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u5cln"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cwol"]
 atlas = ExtResource("3_iv2wv")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(65, 0, 31, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u1csg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_txis3"]
 atlas = ExtResource("3_iv2wv")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(3, 32, 31, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t3s5i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpu8d"]
 atlas = ExtResource("3_iv2wv")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(34, 32, 31, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mckxw"]
 atlas = ExtResource("3_iv2wv")
@@ -339,13 +339,13 @@ region = Rect2(96, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qobsy")
+"texture": SubResource("AtlasTexture_qecl3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e4okx")
+"texture": SubResource("AtlasTexture_kcn85")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u5cln")
+"texture": SubResource("AtlasTexture_3cwol")
 }],
 "loop": true,
 "name": &"axe_idle_down",
@@ -353,10 +353,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u1csg")
+"texture": SubResource("AtlasTexture_txis3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t3s5i")
+"texture": SubResource("AtlasTexture_vpu8d")
 }],
 "loop": true,
 "name": &"axe_idle_side",
@@ -1568,6 +1568,7 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mrx4j"]
 advance_mode = 2
+advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uvlee"]
 advance_mode = 2
@@ -1703,7 +1704,7 @@ states/swim/position = Vector2(824.728, 196.238)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_4lnnm")
 states/walk/position = Vector2(638.259, 99.4646)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mrx4j"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_uvlee"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_17fim"), "walk", "swim", SubResource("AnimationNodeStateMachineTransition_u4own"), "swim", "walk", SubResource("AnimationNodeStateMachineTransition_vjstf"), "stick_idle", "stick_walk", SubResource("AnimationNodeStateMachineTransition_oo4w8"), "stick_walk", "stick_idle", SubResource("AnimationNodeStateMachineTransition_y7sb2"), "axe_idle", "axe_walk", SubResource("AnimationNodeStateMachineTransition_5w4g0"), "axe_walk", "axe_idle", SubResource("AnimationNodeStateMachineTransition_glrqx"), "axe_walk", "chop", SubResource("AnimationNodeStateMachineTransition_yskct"), "chop", "axe_walk", SubResource("AnimationNodeStateMachineTransition_7a7g3"), "idle", "axe_idle", SubResource("AnimationNodeStateMachineTransition_2snhy"), "axe_idle", "idle", SubResource("AnimationNodeStateMachineTransition_qltm2"), "stick_walk", "swim", SubResource("AnimationNodeStateMachineTransition_3u4cb"), "swim", "stick_walk", SubResource("AnimationNodeStateMachineTransition_bwgw7"), "axe_walk", "swim", SubResource("AnimationNodeStateMachineTransition_fo2k7"), "swim", "axe_walk", SubResource("AnimationNodeStateMachineTransition_w87vo"), "axe_idle", "chop", SubResource("AnimationNodeStateMachineTransition_gxihd"), "chop", "axe_idle", SubResource("AnimationNodeStateMachineTransition_ws50b"), "walk", "axe_walk", SubResource("AnimationNodeStateMachineTransition_bql1o"), "axe_walk", "walk", SubResource("AnimationNodeStateMachineTransition_qt71i"), "idle", "stick_idle", SubResource("AnimationNodeStateMachineTransition_8vvjn"), "stick_idle", "idle", SubResource("AnimationNodeStateMachineTransition_5kgox"), "walk", "stick_walk", SubResource("AnimationNodeStateMachineTransition_t27qq"), "stick_walk", "walk", SubResource("AnimationNodeStateMachineTransition_qd4h0"), "stick_idle", "axe_idle", SubResource("AnimationNodeStateMachineTransition_jl1hy"), "axe_idle", "stick_idle", SubResource("AnimationNodeStateMachineTransition_v1kaw"), "axe_walk", "stick_walk", SubResource("AnimationNodeStateMachineTransition_dkiu6"), "stick_walk", "axe_walk", SubResource("AnimationNodeStateMachineTransition_0f567")]
-graph_offset = Vector2(154, 87)
+graph_offset = Vector2(-42, 77)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qj020"]
 random_pitch = 1.3
@@ -1726,7 +1727,7 @@ texture = ExtResource("2_kgc2p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="water_mask"]
 position = Vector2(0, 0.703231)
 sprite_frames = SubResource("SpriteFrames_oawqe")
-animation = &"stick_walk_up"
+animation = &"axe_idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.818844)
@@ -1761,7 +1762,11 @@ parameters/swim/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(0, 0)
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.9, 1.9)
+limit_left = -530
+limit_top = -400
+limit_right = 1220
+limit_bottom = 780
 limit_smoothed = true
 position_smoothing_enabled = true
 
@@ -1781,6 +1786,7 @@ bus = &"sfx"
 
 [node name="swim_sfx" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("14_8irnv")
+volume_db = 8.0
 bus = &"sfx"
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

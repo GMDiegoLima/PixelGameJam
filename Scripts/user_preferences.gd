@@ -3,6 +3,7 @@ class_name UserPreferences extends Resource
 @export_range(0, 1, 0.001) var master_volume: float = 1.0
 @export_range(0, 1, 0.001) var music_volume: float = 0.8
 @export_range(0, 1, 0.001) var sfx_volume: float = 0.5
+@export var max_score:int = 0
 
 func save() -> void:
 	ResourceSaver.save(self, "user://user_prefs.tres")

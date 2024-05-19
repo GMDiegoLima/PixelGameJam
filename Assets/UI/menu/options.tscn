@@ -1,10 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://jos3u0hqo1ol"]
+[gd_scene load_steps=19 format=3 uid="uid://jos3u0hqo1ol"]
 
 [ext_resource type="Script" path="res://Scripts/options.gd" id="1_sniew"]
 [ext_resource type="Texture2D" uid="uid://bpy38wpe7eg1j" path="res://Assets/UI/menu/bg_options.png" id="2_m25qp"]
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="4_gaadm"]
 [ext_resource type="AudioStream" uid="uid://c1cfhjk7ma502" path="res://Audio/sfx/loop_options_sfx.mp3" id="5_aug7u"]
 [ext_resource type="StyleBox" uid="uid://dkkwwhep1mi7l" path="res://Assets/UI/menu/menubutton.tres" id="5_wfgwl"]
+
+[sub_resource type="Gradient" id="Gradient_t4lfd"]
+offsets = PackedFloat32Array(0, 0.917431)
+colors = PackedColorArray(0.552941, 0.431373, 0.388235, 1, 0.235608, 0.171754, 0.149071, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dfdb2"]
+gradient = SubResource("Gradient_t4lfd")
+fill = 1
+fill_from = Vector2(0.490029, 0.452991)
 
 [sub_resource type="Gradient" id="Gradient_ft88h"]
 interpolation_mode = 1
@@ -93,41 +102,43 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swhtn"]
 
-[node name="options" type="Control"]
-process_mode = 3
-z_index = 10
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 0
-offset_left = 398.0
-offset_top = 214.0
-offset_right = 2078.0
-offset_bottom = 1542.0
-scale = Vector2(0.9, 0.9)
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="options" type="CanvasLayer"]
 script = ExtResource("1_sniew")
 
-[node name="Background" type="TextureRect" parent="."]
-texture_filter = 1
-layout_mode = 1
+[node name="background" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1048.0
-offset_top = -876.0
-offset_right = 152.0
-offset_bottom = 324.0
+offset_left = -392.0
+offset_top = -222.0
+offset_right = 392.0
+offset_bottom = 222.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.35, 0.35)
+texture = SubResource("GradientTexture2D_dfdb2")
+
+[node name="window_frame" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -600.0
+offset_right = 600.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.33, 0.33)
+pivot_offset = Vector2(600.509, 601.068)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_m25qp")
 
-[node name="TextAndButtons" type="BoxContainer" parent="Background"]
+[node name="TextAndButtons" type="BoxContainer" parent="window_frame"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -138,13 +149,13 @@ offset_bottom = 739.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/TextAndButtons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="window_frame/TextAndButtons"]
 custom_minimum_size = Vector2(889, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="title" type="Label" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="title" type="Label" parent="window_frame/TextAndButtons/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
@@ -156,11 +167,11 @@ theme_override_font_sizes/font_size = 72
 text = "OPTIONS"
 horizontal_alignment = 1
 
-[node name="MarginContainer1" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="MarginContainer1" type="MarginContainer" parent="window_frame/TextAndButtons/VBoxContainer"]
 custom_minimum_size = Vector2(10, 100)
 layout_mode = 2
 
-[node name="all" type="Label" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="all" type="Label" parent="window_frame/TextAndButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -169,7 +180,7 @@ theme_override_fonts/font = ExtResource("4_gaadm")
 theme_override_font_sizes/font_size = 32
 text = "MASTER VOLUME"
 
-[node name="master_slider" type="HSlider" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="master_slider" type="HSlider" parent="window_frame/TextAndButtons/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -182,7 +193,7 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
-[node name="music" type="Label" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="music" type="Label" parent="window_frame/TextAndButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -191,7 +202,7 @@ theme_override_fonts/font = ExtResource("4_gaadm")
 theme_override_font_sizes/font_size = 32
 text = "MUSIC VOLUME"
 
-[node name="music_slider" type="HSlider" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="music_slider" type="HSlider" parent="window_frame/TextAndButtons/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -204,7 +215,7 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
-[node name="sfx" type="Label" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="sfx" type="Label" parent="window_frame/TextAndButtons/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -213,7 +224,7 @@ theme_override_fonts/font = ExtResource("4_gaadm")
 theme_override_font_sizes/font_size = 32
 text = " SFX VOLUME"
 
-[node name="sfx_slider" type="HSlider" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="sfx_slider" type="HSlider" parent="window_frame/TextAndButtons/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -226,11 +237,11 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
-[node name="MarginContainer2" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="window_frame/TextAndButtons/VBoxContainer"]
 custom_minimum_size = Vector2(10, 100)
 layout_mode = 2
 
-[node name="BACK" type="Button" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="BACK" type="Button" parent="window_frame/TextAndButtons/VBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -251,7 +262,7 @@ stream = ExtResource("5_aug7u")
 autoplay = true
 bus = &"sfx"
 
-[connection signal="value_changed" from="Background/TextAndButtons/VBoxContainer/master_slider" to="." method="_on_master_volume_value_changed"]
-[connection signal="value_changed" from="Background/TextAndButtons/VBoxContainer/music_slider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="Background/TextAndButtons/VBoxContainer/sfx_slider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="pressed" from="Background/TextAndButtons/VBoxContainer/BACK" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="window_frame/TextAndButtons/VBoxContainer/master_slider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="window_frame/TextAndButtons/VBoxContainer/music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="window_frame/TextAndButtons/VBoxContainer/sfx_slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="window_frame/TextAndButtons/VBoxContainer/BACK" to="." method="_on_back_pressed"]

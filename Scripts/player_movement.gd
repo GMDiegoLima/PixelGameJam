@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var user_prefs: UserPreferences
 var speed:float = 175.0
 var current_progress:int = 0
 
@@ -86,8 +87,20 @@ func _physics_process(_delta):
 		velocity = direction*speed
 	elif !direction and is_swimming:
 		velocity = Vector2(0, 1)*100
-	elif direction and is_swimming:
-		velocity = direction*80-Vector2(0, -1)*10
+	elif direction and is_swimming and $"../gamover".visible == false:
+		velocity = direction*100-Vector2(0, -1)*20
+	elif grabbed and $"../gamover".visible == false:
+		$"../UI".visible = false
+		$"../gamover/MarginContainer/VBoxContainer/death_reason".text = "Discovered the evil of humans"
+		user_prefs = UserPreferences.load_or_create()
+		if current_progress > user_prefs.max_score:
+			$"../gamover/MarginContainer/VBoxContainer/bestscore".text = "Your max score was: "+str(current_progress)
+			user_prefs.max_score = current_progress
+			user_prefs.save()
+		else:
+			$"../gamover/MarginContainer/VBoxContainer/bestscore".text = "Your max score was: "+str(user_prefs.max_score)
+		$"../gamover".visible = true
+		$"../gamover/AnimationPlayer".play("fade_out")
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
@@ -118,50 +131,50 @@ func _on_river_water_body_exited(_body):
 func update_animation_parameters():
 	if velocity == Vector2.ZERO:
 		if has_stick:
-			$AnimationTree["parameters/conditions/idle"] = false
-			$AnimationTree["parameters/conditions/stick_idle"] = true
-			$AnimationTree["parameters/conditions/stick_walk"] = false
-			$AnimationTree["parameters/conditions/axe_idle"] = false
+			animation_tree["parameters/conditions/idle"] = false
+			animation_tree["parameters/conditions/stick_idle"] = true
+			animation_tree["parameters/conditions/stick_walk"] = false
+			animation_tree["parameters/conditions/axe_idle"] = false
 		elif has_node("/root/World/player/axe"):
 			if Input.is_action_just_pressed("interact") and inside_tree_range:
-				$AnimationTree["parameters/conditions/chop"] = true
-				$AnimationTree["parameters/conditions/axe_idle"] = false
-				$AnimationTree["parameters/conditions/axe_walk"] = false
+				animation_tree["parameters/conditions/chop"] = true
+				animation_tree["parameters/conditions/axe_idle"] = false
+				animation_tree["parameters/conditions/axe_walk"] = false
 			else:
-				$AnimationTree["parameters/conditions/idle"] = false
-				$AnimationTree["parameters/conditions/stick_idle"] = false
-				$AnimationTree["parameters/conditions/axe_idle"] = true
-				$AnimationTree["parameters/conditions/axe_walk"] = false
+				animation_tree["parameters/conditions/idle"] = false
+				animation_tree["parameters/conditions/stick_idle"] = false
+				animation_tree["parameters/conditions/axe_idle"] = true
+				animation_tree["parameters/conditions/axe_walk"] = false
 		else:
-			$AnimationTree["parameters/conditions/idle"] = true
-			$AnimationTree["parameters/conditions/walk"] = false
-			$AnimationTree["parameters/conditions/stick_idle"] = false
-			$AnimationTree["parameters/conditions/axe_idle"] = false
+			animation_tree["parameters/conditions/idle"] = true
+			animation_tree["parameters/conditions/walk"] = false
+			animation_tree["parameters/conditions/stick_idle"] = false
+			animation_tree["parameters/conditions/axe_idle"] = false
 	else:
 		if has_stick:
-			$AnimationTree["parameters/conditions/walk"] = false
-			$AnimationTree["parameters/conditions/stick_idle"] = false
-			$AnimationTree["parameters/conditions/stick_walk"] = true
-			$AnimationTree["parameters/conditions/axe_walk"] = false
+			animation_tree["parameters/conditions/walk"] = false
+			animation_tree["parameters/conditions/stick_idle"] = false
+			animation_tree["parameters/conditions/stick_walk"] = true
+			animation_tree["parameters/conditions/axe_walk"] = false
 		elif has_node("/root/World/player/axe"):
-			$AnimationTree["parameters/conditions/walk"] = false
-			$AnimationTree["parameters/conditions/stick_walk"] = false
-			$AnimationTree["parameters/conditions/axe_idle"] = false
-			$AnimationTree["parameters/conditions/axe_walk"] = true
+			animation_tree["parameters/conditions/walk"] = false
+			animation_tree["parameters/conditions/stick_walk"] = false
+			animation_tree["parameters/conditions/axe_idle"] = false
+			animation_tree["parameters/conditions/axe_walk"] = true
 		else:
-			$AnimationTree["parameters/conditions/idle"] = false
-			$AnimationTree["parameters/conditions/walk"] = true
-			$AnimationTree["parameters/conditions/stick_walk"] = false
-			$AnimationTree["parameters/conditions/axe_walk"] = false
-	if direction != Vector2.ZERO and !$AnimationTree["parameters/conditions/chop"]:
-		$AnimationTree["parameters/idle/blend_position"] = direction
-		$AnimationTree["parameters/walk/blend_position"] = direction
-		$AnimationTree["parameters/axe_idle/blend_position"] = direction
-		$AnimationTree["parameters/axe_walk/blend_position"] = direction
-		$AnimationTree["parameters/stick_idle/blend_position"] = direction
-		$AnimationTree["parameters/stick_walk/blend_position"] = direction
-		$AnimationTree["parameters/chop/blend_position"] = direction
-		$AnimationTree["parameters/swim/blend_position"] = direction
+			animation_tree["parameters/conditions/idle"] = false
+			animation_tree["parameters/conditions/walk"] = true
+			animation_tree["parameters/conditions/stick_walk"] = false
+			animation_tree["parameters/conditions/axe_walk"] = false
+	if direction != Vector2.ZERO and !animation_tree["parameters/conditions/chop"]:
+		animation_tree["parameters/idle/blend_position"] = direction
+		animation_tree["parameters/walk/blend_position"] = direction
+		animation_tree["parameters/axe_idle/blend_position"] = direction
+		animation_tree["parameters/axe_walk/blend_position"] = direction
+		animation_tree["parameters/stick_idle/blend_position"] = direction
+		animation_tree["parameters/stick_walk/blend_position"] = direction
+		animation_tree["parameters/chop/blend_position"] = direction
+		animation_tree["parameters/swim/blend_position"] = direction
 		if direction == Vector2(1, 0):
 			$water_mask/AnimatedSprite2D.flip_h = false
 		elif  direction.x < 0 and direction.x <= direction.y:
@@ -174,3 +187,23 @@ func _on_animation_tree_animation_finished(anim_name):
 		chop_animation_finished = true
 		$AnimationTree["parameters/conditions/chop"] = false
 		$AnimationTree["parameters/conditions/axe_idle"] = true
+
+func _on_river_death_zone_body_entered(body):
+	$"../UI".visible = false
+	$"../gamover/MarginContainer/VBoxContainer/death_reason".text = "Discovered the strength of the river"
+	user_prefs = UserPreferences.load_or_create()
+	if current_progress > user_prefs.max_score:
+		$"../gamover/MarginContainer/VBoxContainer/bestscore".text = "Your max score was: "+str(current_progress)
+		user_prefs.max_score = current_progress
+		user_prefs.save()
+	else:
+		$"../gamover/MarginContainer/VBoxContainer/bestscore".text = "Your max score was: "+str(user_prefs.max_score)
+	$"../gamover".visible = true
+	$"../gamover/AnimationPlayer".play("fade_out")
+
+func _on_button_pressed():
+	BgGameIntro.stop()
+	BgGameLoop.stop()
+	chase_music.stop()
+	BgMenuMusic.stop()
+	get_tree().change_scene_to_file("res://Scenes/world.tscn")

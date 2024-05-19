@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dlf3gcttnxoqo"]
+[gd_scene load_steps=15 format=3 uid="uid://dlf3gcttnxoqo"]
 
 [ext_resource type="Script" path="res://Scripts/tree.gd" id="2_xisk0"]
 [ext_resource type="Texture2D" uid="uid://7807bfn3oqsd" path="res://Assets/Environment/tree_top.png" id="2_ypjif"]
@@ -190,8 +190,12 @@ _data = {
 "hit": SubResource("Animation_m6onk")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2vhar"]
+polygon = PackedVector2Array(7, 39, 15, 49, 11, 54, 12, 57, -3, 57, -4, 55, -17, 55, -9, 43)
+
 [node name="tree" type="Node2D"]
 process_mode = 1
+z_index = 2
 script = ExtResource("2_xisk0")
 
 [node name="top" type="Marker2D" parent="."]
@@ -220,6 +224,7 @@ debug_color = Color(0.997289, 0, 0.169209, 0.42)
 
 [node name="gather_area" type="Area2D" parent="."]
 collision_layer = 4
+collision_mask = 17
 
 [node name="CollisionShape2D_pick" type="CollisionShape2D" parent="gather_area"]
 position = Vector2(-7.10543e-15, 52)
@@ -231,6 +236,9 @@ debug_color = Color(0.579312, 0.552305, 0, 0.42)
 libraries = {
 "": SubResource("AnimationLibrary_bttw8")
 }
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_2vhar")
 
 [node name="chop_sfx" type="Node" parent="."]
 

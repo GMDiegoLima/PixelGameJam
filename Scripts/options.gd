@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var master_slider = %master_slider
 @onready var music_slider = %music_slider
@@ -9,7 +9,7 @@ var user_prefs: UserPreferences
 func _on_back_pressed():
 	if get_tree().current_scene.name == "World":
 		get_tree().paused = false
-		queue_free()
+		call_deferred("free")
 	else:
 		get_tree().change_scene_to_file("res://Assets/UI/menu/menu.tscn")
 
@@ -22,7 +22,7 @@ func _ready():
 	if sfx_slider:
 		sfx_slider.value = user_prefs.sfx_volume
 
-func _on_master_volume_value_changed(value):
+func _on_master_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(0, linear_to_db(value))
 	AudioServer.set_bus_mute(0, value < 0.01)
 	if user_prefs:
@@ -42,3 +42,6 @@ func _on_sfx_slider_value_changed(value):
 	if user_prefs:
 		user_prefs.sfx_volume = value
 		user_prefs.save()
+
+
+

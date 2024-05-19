@@ -22,8 +22,9 @@ func _process(delta):
 		%player.inside_tree_range = false
 
 func _on_gather_area_body_entered(body):
-	$"../../UI/corner_label".visible = true
-	chop_area = true
+	if body.name == "player":
+		$"../../UI/corner_label".visible = true
+		chop_area = true
 
 func _on_gather_area_body_exited(body):
 	if body.name == "player":
@@ -37,8 +38,9 @@ func _on_animation_player_animation_finished(anim_name):
 		$AnimationPlayer.play(["fall_left", "fall_right"].pick_random())
 	if anim_name in ["fall_left", "fall_right"]:
 		call_deferred("free")
-		drop_item(global_position.x, global_position.y)
-		drop_item(global_position.x, global_position.y)
-		drop_item(global_position.x, global_position.y)
-		drop_item(global_position.x, global_position.y)
-		drop_item(global_position.x, global_position.y)
+		if tree_life <1:
+			drop_item(global_position.x, global_position.y)
+			drop_item(global_position.x, global_position.y)
+			drop_item(global_position.x, global_position.y)
+			drop_item(global_position.x, global_position.y)
+			drop_item(global_position.x, global_position.y)

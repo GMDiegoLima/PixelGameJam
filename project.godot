@@ -13,10 +13,10 @@ config_version=5
 config/name="Otter Destruction"
 config/description="Otter Destruction is a game about a otter trying to survive the humans destroying the forest."
 config/version="1.0.0"
-run/main_scene="res://Scenes/world.tscn"
+run/main_scene="res://Assets/UI/menu/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://icon.png"
+config/icon="res://Assets/Items/axe.png"
 
 [audio]
 
@@ -38,7 +38,6 @@ window/size/viewport_width=768
 window/size/viewport_height=432
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
-window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://Assets/UI/cursor.png"
 
 [file_customization]
@@ -103,8 +102,10 @@ interact={
 2d_physics/layer_4="Item"
 2d_physics/layer_5="Humans"
 2d_physics/layer_6="Industry or walls"
+2d_physics/layer_7="river_colision (only humans)"
 2d_physics/layer_10="World_limit"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.377238, 0.730102, 1, 1)

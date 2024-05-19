@@ -4,5 +4,5 @@
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_aunob")
-volume_db = -5.0
+volume_db = -10.0
 bus = &"music"

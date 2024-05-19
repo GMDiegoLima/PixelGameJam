@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1q0qq7u47nsq"]
+
+[ext_resource type="Texture2D" uid="uid://7807bfn3oqsd" path="res://Assets/Environment/tree_top.png" id="1_2kkvn"]
+[ext_resource type="Texture2D" uid="uid://cx75k8m8la6dw" path="res://Assets/Environment/tree_bot.png" id="2_0qqna"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4h32t"]
+radius = 141.667
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jkdto"]
+polygon = PackedVector2Array(7, 39, 15, 49, 11, 54, 12, 57, -3, 57, -4, 55, -17, 55, -9, 43)
+
+[node name="decorative_tree" type="Node2D"]
+
+[node name="tree_bot" type="Sprite2D" parent="."]
+position = Vector2(0, -60)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_2kkvn")
+
+[node name="tree_top" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_0qqna")
+
+[node name="colision_area" type="StaticBody2D" parent="."]
+position = Vector2(-2.11758e-22, 2)
+scale = Vector2(0.12, 0.12)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colision_area"]
+position = Vector2(-8.33333, -1.66668)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_4h32t")
+debug_color = Color(0.997289, 0, 0.169209, 0.42)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-1, -48)
+scale = Vector2(1, 1)
+occluder = SubResource("OccluderPolygon2D_jkdto")

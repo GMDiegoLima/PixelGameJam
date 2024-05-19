@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d0gt1rns77j42"]
+[gd_scene load_steps=32 format=3 uid="uid://d0gt1rns77j42"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_uv7jn"]
 [ext_resource type="PackedScene" uid="uid://brd4rqnatwnim" path="res://Scenes/player.tscn" id="2_t5ye4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ccx0ia22r62pw" path="res://Assets/Environment/tilemap.tscn" id="3_umg7s"]
 [ext_resource type="PackedScene" uid="uid://dqs76bxdrd2ys" path="res://Scenes/axe.tscn" id="4_4ujcc"]
 [ext_resource type="FontFile" uid="uid://c10a6yw2inefn" path="res://Fonts/DragonHunter-9Ynxj.otf" id="4_ggegv"]
+[ext_resource type="Texture2D" uid="uid://7btuf3tduv6k" path="res://Assets/UI/menu/setting icon.png" id="5_5v8ml"]
 [ext_resource type="StyleBox" uid="uid://dkkwwhep1mi7l" path="res://Assets/UI/menu/menubutton.tres" id="5_ee7kb"]
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="5_jtw61"]
 [ext_resource type="Texture2D" uid="uid://cglhp1clvoqap" path="res://Assets/Items/axe.png" id="7_wqgpl"]
@@ -85,6 +86,21 @@ shadow_color = Color(0, 0, 0, 0.419608)
 shadow_offset = Vector2(2.34, 2.23)
 anti_aliasing = false
 
+[sub_resource type="Animation" id="Animation_67d5f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dark_circle:texture:gradient:colors")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ld0va"]
 resource_name = "fadeout"
 length = 3.0
@@ -111,21 +127,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0), PackedColorArray(0, 0, 0, 0.392157, 0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_67d5f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("dark_circle:texture:gradient:colors")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1bok6"]
@@ -172,18 +173,30 @@ layer_1/tile_data = PackedInt32Array(-327680, 0, 4, 655361, 65536, 4, 524283, 13
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-offset_right = 138.0
-offset_bottom = 62.0
-theme_override_constants/separation = 7
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -416.0
+offset_right = 417.0
+offset_bottom = 512.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 10
 
-[node name="trees_left" type="Label" parent="UI/HBoxContainer"]
+[node name="trees_left" type="Label" parent="UI/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.654902)
@@ -193,27 +206,21 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 32
 text = "20"
 
-[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/Control/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_lckg2")
 expand_mode = 3
-stretch_mode = 5
+stretch_mode = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -252.0
-offset_right = 252.0
-offset_bottom = 17.0
-grow_horizontal = 2
+[node name="ProgressBar" type="ProgressBar" parent="UI/Control/HBoxContainer"]
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_uy2a5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_h5x5r")
 max_value = 30.0
 step = 1.0
 show_percentage = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/ProgressBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/HBoxContainer/ProgressBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -227,7 +234,7 @@ offset_bottom = 16.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="current" type="Label" parent="UI/ProgressBar/HBoxContainer"]
+[node name="current" type="Label" parent="UI/Control/HBoxContainer/ProgressBar/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -236,7 +243,7 @@ theme_override_font_sizes/font_size = 8
 text = "0"
 horizontal_alignment = 1
 
-[node name="objective" type="Label" parent="UI/ProgressBar/HBoxContainer"]
+[node name="objective" type="Label" parent="UI/Control/HBoxContainer/ProgressBar/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -245,15 +252,24 @@ theme_override_font_sizes/font_size = 8
 text = "/ 30"
 horizontal_alignment = 1
 
-[node name="corner_label" type="Label" parent="UI" groups=["corner_label"]]
+[node name="TextureButton" type="TextureButton" parent="UI/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+action_mode = 0
+texture_normal = ExtResource("5_5v8ml")
+
+[node name="corner_label" type="Label" parent="." groups=["corner_label"]]
 texture_filter = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -328.0
-offset_top = -63.0
+offset_left = 440.0
+offset_top = 369.0
+offset_right = 768.0
+offset_bottom = 432.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)

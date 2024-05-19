@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u2oc7fku1fas"
-path="res://.godot/imported/human hold axe.png-d5441a18220dca7b2afcc799bcc365d3.ctex"
+uid="uid://7btuf3tduv6k"
+path="res://.godot/imported/setting icon.png-c241a83ade3ca3ffb8cecf957c6b28ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/human hold axe.png"
-dest_files=["res://.godot/imported/human hold axe.png-d5441a18220dca7b2afcc799bcc365d3.ctex"]
+source_file="res://Assets/UI/menu/setting icon.png"
+dest_files=["res://.godot/imported/setting icon.png-c241a83ade3ca3ffb8cecf957c6b28ce.ctex"]
 
 [params]
 

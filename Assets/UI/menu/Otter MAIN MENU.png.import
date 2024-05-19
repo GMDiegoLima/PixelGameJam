@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bybq5q34cvi3k"
-path="res://.godot/imported/hold axe (aligned).png-caaaad0a09b786e6bb7722827ff6cfd4.ctex"
+uid="uid://ccr3plwuydcvu"
+path="res://.godot/imported/Otter MAIN MENU.png-2d9927ab7394c771666167ae6534b480.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/hold axe (aligned).png"
-dest_files=["res://.godot/imported/hold axe (aligned).png-caaaad0a09b786e6bb7722827ff6cfd4.ctex"]
+source_file="res://Assets/UI/menu/Otter MAIN MENU.png"
+dest_files=["res://.godot/imported/Otter MAIN MENU.png-2d9927ab7394c771666167ae6534b480.ctex"]
 
 [params]
 

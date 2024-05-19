@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cavb3qwy08dpc"]
+[gd_scene load_steps=8 format=3 uid="uid://cavb3qwy08dpc"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_nmfh5"]
-[ext_resource type="Texture2D" uid="uid://co10hhditgtny" path="res://Assets/UI/menu/background.jpg" id="2_ujcop"]
-[ext_resource type="FontFile" uid="uid://c10a6yw2inefn" path="res://Fonts/DragonHunter-9Ynxj.otf" id="3_516vl"]
+[ext_resource type="Texture2D" uid="uid://bedea7tvse872" path="res://Assets/UI/menu/Otter MAIN MENU no buttons.png" id="2_8c4ya"]
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="4_x10rq"]
 [ext_resource type="StyleBox" uid="uid://dkkwwhep1mi7l" path="res://Assets/UI/menu/menubutton.tres" id="5_sokoj"]
 
@@ -38,12 +37,12 @@ script = ExtResource("1_nmfh5")
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 1
-offset_right = 1152.0
-offset_bottom = 768.0
-scale = Vector2(0.669, 0.669)
+offset_right = 2048.0
+offset_bottom = 1152.0
+scale = Vector2(0.377, 0.377)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_ujcop")
+texture = ExtResource("2_8c4ya")
 
 [node name="TextAndButtons" type="BoxContainer" parent="Background"]
 layout_mode = 1
@@ -64,23 +63,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="GameTitle" type="Label" parent="Background/TextAndButtons/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(1, 0.0071798, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_516vl")
-theme_override_font_sizes/font_size = 80
-text = "OTTER DESTRUCTION"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="MarginContainer2" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
 custom_minimum_size = Vector2(10, 140)
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_constants/margin_top = 400
 
 [node name="Play" type="Button" parent="Background/TextAndButtons/VBoxContainer"]
 custom_minimum_size = Vector2(150, 0)

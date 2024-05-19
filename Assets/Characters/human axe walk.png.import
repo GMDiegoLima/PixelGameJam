@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lbnp2ghmjivh"
-path="res://.godot/imported/hold wood new.png-7c67f402bd2e7bfe1eb5d310285edc80.ctex"
+uid="uid://s2w6sjd6u8jl"
+path="res://.godot/imported/human axe walk.png-3510fc2653eb3457231631a245a63e99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/hold wood new.png"
-dest_files=["res://.godot/imported/hold wood new.png-7c67f402bd2e7bfe1eb5d310285edc80.ctex"]
+source_file="res://Assets/Characters/human axe walk.png"
+dest_files=["res://.godot/imported/human axe walk.png-3510fc2653eb3457231631a245a63e99.ctex"]
 
 [params]
 

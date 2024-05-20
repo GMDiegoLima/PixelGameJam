@@ -5,6 +5,7 @@ const lines: Array[String] = ["CHUU SAID: JACK YOU NEED TO SAVE US FROM THE HUMA
 
 func _process(delta):
 	if can_talk and Input.is_action_just_pressed("interact"):
+		print(global_position)
 		DialogManager.start_dialog(global_position, lines)
 
 func _on_talk_area_body_entered(body):

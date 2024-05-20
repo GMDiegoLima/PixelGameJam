@@ -39,7 +39,5 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name in ["fall_left", "fall_right"]:
 		call_deferred("free")
 		if tree_life < 1:
-			drop_item(global_position.x, global_position.y)
-			drop_item(global_position.x, global_position.y)
-			drop_item(global_position.x, global_position.y)
-			drop_item(global_position.x, global_position.y)
+			for i in randf_range(4, 7):
+				drop_item(global_position.x, global_position.y)

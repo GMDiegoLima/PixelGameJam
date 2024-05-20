@@ -1,8 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://bbmyssvfdbrvr"]
 
 [ext_resource type="Texture2D" uid="uid://csiylhrxehn0j" path="res://Assets/Characters/npcs.png" id="1_4d1x6"]
-[ext_resource type="Texture2D" uid="uid://cpptk2j4rn8vd" path="res://Assets/Characters/mask.png" id="1_t5htm"]
 [ext_resource type="Script" path="res://Scripts/npc3.gd" id="2_g3x7r"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qmqdj"]
+load_path = "res://.godot/imported/mask.png-b9814c17bb0e54cc9f0c2720bad3d1ea.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbxno"]
 atlas = ExtResource("1_4d1x6")
@@ -122,7 +124,7 @@ _data = {
 
 [node name="npc3" type="Sprite2D"]
 self_modulate = Color(1, 1, 1, 0)
-texture = ExtResource("1_t5htm")
+texture = SubResource("CompressedTexture2D_qmqdj")
 script = ExtResource("2_g3x7r")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -132,6 +134,7 @@ autoplay = "default"
 frame = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CapsuleShape2D_1ayvy")
@@ -139,7 +142,7 @@ shape = SubResource("CapsuleShape2D_1ayvy")
 [node name="talk_area" type="Area2D" parent="."]
 position = Vector2(0, 1)
 scale = Vector2(1, 0.75)
-collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="talk_area"]
 shape = SubResource("CircleShape2D_8widp")

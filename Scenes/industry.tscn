@@ -53,7 +53,7 @@ position = Vector2(-220, 375)
 
 [node name="frequency_to_spawn" type="Timer" parent="."]
 process_mode = 1
-wait_time = 5.0
+wait_time = 6.0
 autostart = true
 
 [connection signal="timeout" from="frequency_to_spawn" to="." method="_on_frequency_to_spawn_timeout"]

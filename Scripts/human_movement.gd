@@ -13,7 +13,7 @@ var path_index:int = 0
 var in_path_line:bool = true
 @onready var human_node = get_parent()
 @onready var path_spawn = human_node.get_node("human_spawned/follow")
-@onready var chosen_path = [$"../human_path1/follow", $"../human_path2/follow", $"../human_path3/follow", $"../human_path4/follow", $"../human_path5/follow", $"../human_path6/follow"].pick_random()
+@onready var chosen_path = [$"../human_path1/follow", $"../human_path2/follow", $"../human_path3/follow", $"../human_path4/follow", $"../human_path5/follow", $"../human_path6/follow", $"../human_path7/follow", $"../human_path8/follow"].pick_random()
 @onready var chasing:bool = false
 @onready var grabbing = false
 var curve_path = null
@@ -183,7 +183,7 @@ func update_animation_parameters():
 			$AnimatedSprite2D.flip_h = false
 
 func _on_vision_cone_area_body_entered(body):
-	if !chopping_tree and path_index < 2:
+	if !chopping_tree and !has_wood:
 		chasing = true
 		player.is_being_chased = true
 

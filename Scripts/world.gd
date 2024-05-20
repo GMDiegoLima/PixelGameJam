@@ -18,7 +18,7 @@ func _ready():
 
 func _process(_delta):
 	$UI/Control/BoxContainer/trees_left.text = str(trees.get_child_count())
-	if trees.get_child_count() == 0 and $UI.visible or trees.get_child_count()*4 < int(30-%player.current_progress) and $UI.visible:
+	if trees.get_child_count() == 0 and $UI.visible or trees.get_child_count()*5 < int(30-%player.current_progress) and $UI.visible:
 		get_tree().paused = true
 		$UI.visible = false
 		user_prefs = UserPreferences.load_or_create()

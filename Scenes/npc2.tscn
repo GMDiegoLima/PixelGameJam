@@ -132,6 +132,7 @@ autoplay = "default"
 frame = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CapsuleShape2D_1ayvy")
@@ -139,6 +140,7 @@ shape = SubResource("CapsuleShape2D_1ayvy")
 [node name="talk_area" type="Area2D" parent="."]
 position = Vector2(0, 1)
 scale = Vector2(1, 0.75)
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="talk_area"]
 shape = SubResource("CircleShape2D_s1pld")

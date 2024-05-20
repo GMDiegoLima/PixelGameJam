@@ -1652,7 +1652,7 @@ theme_override_constants/outline_size = 8
 theme_override_constants/line_spacing = -10
 theme_override_fonts/font = ExtResource("3_4wcv4")
 theme_override_font_sizes/font_size = 14
-text = "ALL YOUR FRIENDS WERE SAVED FROM THE LAND OF EVIL HUMANS AND NOW THEY CAN LIVE IN PEACE IN A BETTER PLACE"
+text = "ALL YOUR FRIENDS ARE SAVED FROM THE LAND OF EVIL HUMANS AND NOW THEY CAN LIVE IN PEACE IN A BETTER PLACE"
 horizontal_alignment = 1
 autowrap_mode = 2
 

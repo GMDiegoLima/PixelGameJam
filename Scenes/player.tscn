@@ -1762,6 +1762,7 @@ parameters/swim/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(0, 0)
 
 [node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(1.9, 1.9)
 limit_left = -530
 limit_top = -400
 limit_right = 1220

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d0gt1rns77j42"]
+[gd_scene load_steps=47 format=3 uid="uid://d0gt1rns77j42"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_uv7jn"]
 [ext_resource type="PackedScene" uid="uid://brd4rqnatwnim" path="res://Scenes/player.tscn" id="2_t5ye4"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="5_jtw61"]
 [ext_resource type="Texture2D" uid="uid://cddi165bfvd5m" path="res://Assets/UI/menu/settings light.png" id="6_kdqm5"]
 [ext_resource type="Texture2D" uid="uid://cglhp1clvoqap" path="res://Assets/Items/axe.png" id="7_wqgpl"]
+[ext_resource type="Texture2D" uid="uid://dyt1wewq73d6a" path="res://Assets/UI/menu/build icon.png" id="8_0hvio"]
 [ext_resource type="PackedScene" uid="uid://ck2xw85qpnyjv" path="res://Audio/bg_chase_music.tscn" id="8_8tfjw"]
 [ext_resource type="PackedScene" uid="uid://d1q0qq7u47nsq" path="res://Assets/Environment/decorative_tree.tscn" id="10_aaym4"]
 [ext_resource type="AudioStream" uid="uid://bl1f72iwus4fg" path="res://Audio/Defeat.wav" id="15_sg8me"]
@@ -223,6 +224,56 @@ size = Vector2(682, 102)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s015o"]
 size = Vector2(108, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4cmb"]
+atlas = ExtResource("8_0hvio")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68a5v"]
+atlas = ExtResource("8_0hvio")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oritv"]
+atlas = ExtResource("8_0hvio")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sd2x"]
+atlas = ExtResource("8_0hvio")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl0cd"]
+atlas = ExtResource("8_0hvio")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or4wi"]
+atlas = ExtResource("8_0hvio")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nn7c4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4cmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68a5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oritv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sd2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl0cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or4wi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_m7yjt"]
 interpolation_mode = 2
@@ -534,6 +585,12 @@ position = Vector2(-380, 208)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="river/bridge"]
 position = Vector2(-506, 208)
 shape = SubResource("RectangleShape2D_s015o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="river/bridge"]
+modulate = Color(1, 1, 1, 0.8)
+position = Vector2(-476, 206)
+sprite_frames = SubResource("SpriteFrames_nn7c4")
+autoplay = "default"
 
 [node name="industry" parent="." instance=ExtResource("3_8y838")]
 position = Vector2(-405, -219)

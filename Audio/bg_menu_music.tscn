@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cx47dhifhfbqv"]
 
-[ext_resource type="AudioStream" uid="uid://boyyqlahc1oq7" path="res://Audio/Title_Screen.mp3" id="1_gxc4n"]
+[ext_resource type="AudioStream" uid="uid://bsltsbgt7y106" path="res://Audio/Title Screen (InGame).wav" id="1_2lsqj"]
 
 [node name="MenuBackgroundMusic" type="AudioStreamPlayer2D"]
 process_mode = 3
-stream = ExtResource("1_gxc4n")
+stream = ExtResource("1_2lsqj")
 bus = &"music"

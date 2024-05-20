@@ -37,6 +37,7 @@ func build():
 	match current_progress:
 		1:
 			$"../river/bridge/CollisionShape2D".disabled = true
+			$"../river/bridge/AnimatedSprite2D".visible = false
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
 			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x, $"../river/bridge/bridge_spawn".global_position.y)

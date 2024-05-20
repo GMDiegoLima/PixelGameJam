@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cavb3qwy08dpc"]
+[gd_scene load_steps=14 format=3 uid="uid://cavb3qwy08dpc"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_nmfh5"]
 [ext_resource type="Texture2D" uid="uid://bedea7tvse872" path="res://Assets/UI/menu/Otter MAIN MENU no buttons.png" id="2_8c4ya"]
@@ -6,18 +6,41 @@
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="4_x10rq"]
 [ext_resource type="StyleBox" uid="uid://xmj1b8h8nn2r" path="res://Assets/UI/menu/light_button_style.tres" id="5_rhjnf"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bmlyy"]
+load_path = "res://.godot/imported/button.png-2ee497cea5b31751fe0123da9ae61799.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4lccq"]
+content_margin_left = 50.0
+content_margin_top = 0.0
+content_margin_right = 50.0
+content_margin_bottom = 5.0
+texture = SubResource("CompressedTexture2D_bmlyy")
+region_rect = Rect2(192, 432, 640, 176)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7i52"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swhtn"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bmlyy"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2h475"]
 load_path = "res://.godot/imported/button.png-2ee497cea5b31751fe0123da9ae61799.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cunho"]
-content_margin_left = 50.0
-content_margin_right = 50.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y2gv7"]
+content_margin_left = 40.0
+content_margin_top = 0.0
+content_margin_right = 40.0
 content_margin_bottom = 5.0
-texture = SubResource("CompressedTexture2D_bmlyy")
+texture = SubResource("CompressedTexture2D_2h475")
+region_rect = Rect2(192, 432, 640, 176)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yvq6x"]
+load_path = "res://.godot/imported/button light.png-31e4e1ddfe1e02d0103cd075d0fd6740.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xa17"]
+content_margin_left = 40.0
+content_margin_top = 0.0
+content_margin_right = 40.0
+content_margin_bottom = 10.0
+texture = SubResource("CompressedTexture2D_yvq6x")
 region_rect = Rect2(192, 432, 640, 176)
 
 [node name="menu" type="Control"]
@@ -71,7 +94,7 @@ theme_override_colors/font_outline_color = Color(0.243137, 0.137255, 0.278431, 1
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_x10rq")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = ExtResource("4_pusln")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4lccq")
 theme_override_styles/hover = ExtResource("5_rhjnf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
@@ -106,8 +129,8 @@ theme_override_colors/font_outline_color = Color(0.243137, 0.137255, 0.278431, 1
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_x10rq")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxTexture_cunho")
-theme_override_styles/hover = ExtResource("5_rhjnf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y2gv7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8xa17")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
 action_mode = 0

@@ -573,7 +573,7 @@ shape = SubResource("RectangleShape2D_bsmy6")
 collision_layer = 64
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="river/river_water"]
-polygon = PackedVector2Array(-727, -333, -724, -306, -633, -303, -627, -273, -568, -272, -563, -241, -473, -240, -468, -209, -436, -205, -437, 976, 202, 979, 206, -328, 234, -334, 240, -362, 265, -368, 271, -455, 39, -516, 42, -496, 67, -491, 75, -466, 103, -457, 98, -373, 79, -369, 69, -341, 16, -340, 6, -310, -209, -309, -218, -340, -240, -340, -249, -402, -276, -414, -823, -360, -818, -335)
+polygon = PackedVector2Array(-727, -333, -724, -306, -633, -303, -627, -273, -568, -272, -563, -241, -473, -240, -468, -209, -436, -205, -437, 976, 202, 979, 206, -328, 234, -334, 240, -362, 265, -368, 271, -455, 39, -516, 42, -496, 67, -491, 75, -466, 103, -457, 98, -373, 79, -369, 69, -341, 16, -340, 6, -326, -211, -326, -218, -340, -240, -340, -249, -402, -276, -414, -823, -360, -818, -335)
 
 [node name="bridge" type="Area2D" parent="river"]
 collision_layer = 16
@@ -596,7 +596,7 @@ position = Vector2(-405, -219)
 
 [node name="player" parent="." instance=ExtResource("2_t5ye4")]
 unique_name_in_owner = true
-position = Vector2(66, 186)
+position = Vector2(532, -395)
 collision_mask = 319
 
 [node name="axe" parent="." instance=ExtResource("4_4ujcc")]
@@ -610,7 +610,7 @@ position = Vector2(64, 264)
 position = Vector2(532, -463)
 
 [node name="npc3" parent="." instance=ExtResource("4_3l8au")]
-position = Vector2(-251, 457)
+position = Vector2(-501, 696)
 
 [node name="humans" type="Node" parent="."]
 

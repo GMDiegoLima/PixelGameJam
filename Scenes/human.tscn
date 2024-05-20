@@ -15,6 +15,48 @@
 [ext_resource type="AudioStream" uid="uid://clos41yqwvoqx" path="res://Audio/sfx/Grabbed.wav" id="6_2361j"]
 [ext_resource type="Texture2D" uid="uid://bsje0tu4j2gus" path="res://Assets/Characters/human wood.png" id="12_kbohr"]
 
+[sub_resource type="Curve2D" id="Curve2D_rx5yc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -406, -136, -6.11393, -5.76664, 6.11393, 5.76664, -387, -95, -29.724, 30.0221, 29.724, -30.0221, -310, -89)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_pyia2"]
+_data = {
+"points": PackedVector2Array(-37.4033, -13.1756, 37.4033, 13.1756, -310.924, -88, -45.5787, 21.3504, 45.5787, -21.3504, -161.413, -74, -54.7589, 9.74336, 54.7589, -9.74336, -24.5893, -158.862, -53.8796, -26.3866, 53.8796, 26.3866, 180.411, -131.862)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_jitko"]
+_data = {
+"points": PackedVector2Array(-11.2751, -33.8902, 11.2751, 33.8902, -309.924, -87, -70.3318, -1.64217, 70.3318, 1.64217, -160.589, 21.1383, -68.9221, -8.98984, 68.9221, 8.98984, 69.4107, -49.8616, -23.863, -33.6403, 23.863, 33.6403, 177.411, 8.13835)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_k0ggd"]
+_data = {
+"points": PackedVector2Array(-21.3409, -87.985, 21.3409, 87.985, -309.924, -87, -69.0053, -70.8674, 69.0053, 70.8674, -191.413, 215, -179.151, -30.0739, 179.151, 30.0739, 107.587, 464)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_2krqq"]
+_data = {
+"points": PackedVector2Array(8.98392, -66.5793, -8.98392, 66.5793, -310.924, -88, 18.5429, 80.363, -18.5429, -80.363, -286.413, 165, -44.5552, -64.9603, 44.5552, 64.9603, -207.413, 460, -142.71, -5.44838, 142.71, 5.44838, 149.587, 590)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_wk33k"]
+_data = {
+"points": PackedVector2Array(16.8412, -63.2119, -16.8412, 63.2119, -309.924, -87, -3.46634, -89.1711, 3.46634, 89.1711, -336.665, 291.138, -51.3843, -39.399, 51.3843, 39.399, -239.665, 594.138, -52.101, -8.75704, 52.101, 8.75704, 37.3347, 654.138)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_cn1vl"]
+_data = {
+"points": PackedVector2Array(39.2904, -64.3344, -39.2904, 64.3344, -309.924, -87, 0, 0, 0, 0, -321.906, -68.9729, 0, 0, 0, 0, -384.752, 27.8113, 5.44917, -50.8889, -5.44917, 50.8889, -442.489, 172, -12.5475, -50.5186, 12.5475, 50.5186, -421.489, 412, -17.5149, -28.8713, 17.5149, 28.8713, -394.489, 573)
+}
+point_count = 6
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_at24h"]
 atlas = ExtResource("6_8b1pa")
 region = Rect2(0, 0, 64, 64)
@@ -1586,48 +1628,6 @@ states/wood_hold/position = Vector2(-205.165, 272.801)
 transitions = ["walk", "idle", SubResource("AnimationNodeStateMachineTransition_5v14b"), "walk", "chase", SubResource("AnimationNodeStateMachineTransition_oshr1"), "chase", "walk", SubResource("AnimationNodeStateMachineTransition_4p8o5"), "axe_idle", "axe_hold", SubResource("AnimationNodeStateMachineTransition_y4xwu"), "axe_hold", "axe_idle", SubResource("AnimationNodeStateMachineTransition_ajn6j"), "idle", "axe_idle", SubResource("AnimationNodeStateMachineTransition_4r8m7"), "axe_hold", "chase", SubResource("AnimationNodeStateMachineTransition_cyocq"), "chase", "axe_hold", SubResource("AnimationNodeStateMachineTransition_2shf5"), "Start", "walk", SubResource("AnimationNodeStateMachineTransition_7xcwq"), "walk", "axe_hold", SubResource("AnimationNodeStateMachineTransition_tf4y7"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_5qfj1"), "idle", "chase", SubResource("AnimationNodeStateMachineTransition_kvknb"), "chase", "chop", SubResource("AnimationNodeStateMachineTransition_rgkuf"), "axe_hold", "chop", SubResource("AnimationNodeStateMachineTransition_hdp3v"), "chop", "wood_hold", SubResource("AnimationNodeStateMachineTransition_gthr0"), "axe_idle", "wood_hold", SubResource("AnimationNodeStateMachineTransition_kyixk"), "chop", "idle", SubResource("AnimationNodeStateMachineTransition_od84w"), "idle", "chop", SubResource("AnimationNodeStateMachineTransition_8wu6n")]
 graph_offset = Vector2(-429, 189)
 
-[sub_resource type="Curve2D" id="Curve2D_jy8o8"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -406, -136, -6.11393, -5.76664, 6.11393, 5.76664, -387, -95, -29.724, 30.0221, 29.724, -30.0221, -310, -89)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_grh1c"]
-_data = {
-"points": PackedVector2Array(-37.4033, -13.1756, 37.4033, 13.1756, -310.924, -88, -41.0838, 28.0928, 41.0838, -28.0928, -161.413, -74, -62.9996, 18.7332, 62.9996, -18.7332, -37.4125, -154, -53.8796, -26.3866, 53.8796, 26.3866, 176.587, -134)
-}
-point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_dj7ik"]
-_data = {
-"points": PackedVector2Array(-11.2751, -33.8902, 11.2751, 33.8902, -309.924, -87, -65.0877, 32.8189, 65.0877, -32.8189, -124.413, 31, -73.3071, -33.6403, 73.3071, 33.6403, 200.587, 28)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_8xx2j"]
-_data = {
-"points": PackedVector2Array(-21.3409, -87.985, 21.3409, 87.985, -309.924, -87, -69.0053, -70.8674, 69.0053, 70.8674, -191.413, 215, -179.151, -30.0739, 179.151, 30.0739, 107.587, 464)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_mowfw"]
-_data = {
-"points": PackedVector2Array(8.98392, -66.5793, -8.98392, 66.5793, -310.924, -88, 18.5429, 80.363, -18.5429, -80.363, -286.413, 165, -44.5552, -64.9603, 44.5552, 64.9603, -207.413, 460, -142.71, -5.44838, 142.71, 5.44838, 149.587, 590)
-}
-point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_exwo5"]
-_data = {
-"points": PackedVector2Array(16.8412, -63.2119, -16.8412, 63.2119, -309.924, -87, 2.08956, -90.7585, -2.08956, 90.7585, -340.489, 285, -70.8678, -78.4061, 70.8678, 78.4061, -227.489, 611)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_ymwt6"]
-_data = {
-"points": PackedVector2Array(39.2904, -64.3344, -39.2904, 64.3344, -309.924, -87, 0, 0, 0, 0, -321.906, -68.9729, 0, 0, 0, 0, -384.752, 27.8113, 5.44917, -50.8889, -5.44917, 50.8889, -442.489, 172, -12.5475, -50.5186, 12.5475, 50.5186, -421.489, 412, -17.5149, -28.8713, 17.5149, 28.8713, -394.489, 573)
-}
-point_count = 6
-
 [node name="human_node" type="Node2D"]
 process_mode = 1
 z_index = 1
@@ -1656,6 +1656,80 @@ bus = &"sfx"
 [node name="chopping" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="human_spawned" type="Path2D" parent="."]
+position = Vector2(405.666, 137.464)
+curve = SubResource("Curve2D_rx5yc")
+
+[node name="wait_to_keep_walking" type="Timer" parent="human_spawned"]
+wait_time = 2.0
+one_shot = true
+
+[node name="follow" type="PathFollow2D" parent="human_spawned"]
+position = Vector2(-406, -136)
+rotation = 2.26213
+rotates = false
+loop = false
+
+[node name="human_path1" type="Path2D" parent="."]
+position = Vector2(405.59, 137.464)
+curve = SubResource("Curve2D_pyia2")
+
+[node name="follow" type="PathFollow2D" parent="human_path1"]
+position = Vector2(-310.924, -88)
+rotation = 0.887895
+rotates = false
+loop = false
+
+[node name="human_path2" type="Path2D" parent="."]
+position = Vector2(405.59, 137.464)
+curve = SubResource("Curve2D_jitko")
+
+[node name="follow" type="PathFollow2D" parent="human_path2"]
+position = Vector2(-309.924, -87)
+rotation = 1.39031
+rotates = false
+loop = false
+
+[node name="human_path3" type="Path2D" parent="."]
+position = Vector2(405.59, 137.464)
+curve = SubResource("Curve2D_k0ggd")
+
+[node name="follow" type="PathFollow2D" parent="human_path3"]
+position = Vector2(-309.924, -87)
+rotation = 1.70492
+rotates = false
+loop = false
+
+[node name="human_path4" type="Path2D" parent="."]
+position = Vector2(405.59, 137.464)
+curve = SubResource("Curve2D_2krqq")
+
+[node name="follow" type="PathFollow2D" parent="human_path4"]
+position = Vector2(-310.924, -88)
+rotation = 1.70492
+rotates = false
+loop = false
+
+[node name="human_path5" type="Path2D" parent="."]
+position = Vector2(405.666, 139.464)
+curve = SubResource("Curve2D_wk33k")
+
+[node name="follow" type="PathFollow2D" parent="human_path5"]
+position = Vector2(-309.924, -87)
+rotation = 1.70492
+rotates = false
+loop = false
+
+[node name="human_path6" type="Path2D" parent="."]
+position = Vector2(404.666, 138.464)
+curve = SubResource("Curve2D_cn1vl")
+
+[node name="follow" type="PathFollow2D" parent="human_path6"]
+position = Vector2(-309.924, -87)
+rotation = 1.70492
+rotates = false
+loop = false
 
 [node name="human" type="CharacterBody2D" parent="." groups=["human"]]
 process_mode = 1
@@ -1727,90 +1801,9 @@ parameters/idle/blend_position = Vector2(-0.00263852, -0.0034014)
 parameters/walk/blend_position = Vector2(-0.00263852, 0.00836825)
 parameters/wood_hold/blend_position = Vector2(0, 0)
 
-[node name="human_spawned" type="Path2D" parent="."]
-z_index = -1
-position = Vector2(406.665, 136.862)
-curve = SubResource("Curve2D_jy8o8")
-
-[node name="wait_to_keep_walking" type="Timer" parent="human_spawned"]
-wait_time = 2.0
-one_shot = true
-
-[node name="follow" type="PathFollow2D" parent="human_spawned"]
-position = Vector2(-406, -136)
-rotation = 2.26213
-rotates = false
-loop = false
-
-[node name="human_path1" type="Path2D" parent="."]
-z_index = -1
-position = Vector2(406.589, 136.862)
-curve = SubResource("Curve2D_grh1c")
-
-[node name="follow" type="PathFollow2D" parent="human_path1"]
-position = Vector2(-310.924, -88)
-rotation = 0.887895
-rotates = false
-loop = false
-
-[node name="human_path2" type="Path2D" parent="."]
-z_index = -1
-position = Vector2(406.589, 136.862)
-curve = SubResource("Curve2D_dj7ik")
-
-[node name="follow" type="PathFollow2D" parent="human_path2"]
-position = Vector2(-309.924, -87)
-rotation = 1.39031
-rotates = false
-loop = false
-
-[node name="human_path3" type="Path2D" parent="."]
-z_index = -1
-position = Vector2(406.589, 136.862)
-curve = SubResource("Curve2D_8xx2j")
-
-[node name="follow" type="PathFollow2D" parent="human_path3"]
-position = Vector2(-309.924, -87)
-rotation = 1.70492
-rotates = false
-loop = false
-
-[node name="human_path4" type="Path2D" parent="."]
-z_index = -1
-position = Vector2(406.589, 136.862)
-curve = SubResource("Curve2D_mowfw")
-
-[node name="follow" type="PathFollow2D" parent="human_path4"]
-position = Vector2(-310.924, -88)
-rotation = 1.70492
-rotates = false
-loop = false
-
-[node name="human_path5" type="Path2D" parent="."]
-z_index = -1
-position = Vector2(406.665, 138.862)
-curve = SubResource("Curve2D_exwo5")
-
-[node name="follow" type="PathFollow2D" parent="human_path5"]
-position = Vector2(-309.924, -87)
-rotation = 1.70492
-rotates = false
-loop = false
-
-[node name="human_path6" type="Path2D" parent="."]
-z_index = -1
-position = Vector2(405.665, 137.862)
-curve = SubResource("Curve2D_ymwt6")
-
-[node name="follow" type="PathFollow2D" parent="human_path6"]
-position = Vector2(-309.924, -87)
-rotation = 1.70492
-rotates = false
-loop = false
-
 [connection signal="timeout" from="chopping" to="human" method="_on_chopping_timeout"]
+[connection signal="timeout" from="human_spawned/wait_to_keep_walking" to="human" method="_on_wait_to_keep_walking_timeout"]
 [connection signal="area_entered" from="human/colision" to="human" method="_on_colision_area_entered"]
 [connection signal="body_entered" from="human/VisionCone2D/VisionConeArea" to="human" method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="human/VisionCone2D/VisionConeArea" to="human" method="_on_vision_cone_area_body_exited"]
 [connection signal="animation_finished" from="human/AnimationTree" to="human" method="_on_animation_tree_animation_finished"]
-[connection signal="timeout" from="human_spawned/wait_to_keep_walking" to="human" method="_on_wait_to_keep_walking_timeout"]

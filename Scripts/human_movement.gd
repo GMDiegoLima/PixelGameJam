@@ -14,7 +14,6 @@ var in_path_line:bool = true
 @onready var human_node = get_parent()
 @onready var path_spawn = human_node.get_node("human_spawned/follow")
 @onready var chosen_path = [$"../human_path1/follow", $"../human_path2/follow", $"../human_path3/follow", $"../human_path4/follow", $"../human_path5/follow", $"../human_path6/follow"].pick_random()
-
 @onready var chasing:bool = false
 @onready var grabbing = false
 var curve_path = null

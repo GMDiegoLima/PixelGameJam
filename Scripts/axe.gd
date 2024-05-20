@@ -2,6 +2,7 @@ extends Sprite2D
 
 var has_axe = false
 var can_get_axe = false
+@onready var corner_label = $"../UI/Control/corner_label"
 
 func link_axe():
 	has_axe = true
@@ -16,6 +17,7 @@ func link_axe():
 				child.reparent(get_node("/root/World/drops"), true)
 	# set the axe to the player
 	visible = false
+	$pick_area/CollisionShape2D.disabled = true
 	reparent(player, true)
 
 func _process(delta):
@@ -23,7 +25,10 @@ func _process(delta):
 		link_axe()
 
 func _on_pick_area_body_entered(body):
+	corner_label.visible = true
+	corner_label.text = "Press E to pick the axe"
 	can_get_axe = true
 
 func _on_pick_area_body_exited(body):
+	corner_label.visible = false
 	can_get_axe = false

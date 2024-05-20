@@ -22,6 +22,7 @@ func pick():
 		axe.has_axe = false
 		axe.global_position = chosest_stick.global_position
 		axe.visible = true
+		axe.get_node("pick_area/CollisionShape2D").disabled = false
 		axe.reparent(get_node("/root/World"), true)
 	# pick the stick
 	if chosest_stick and !player.has_stick:

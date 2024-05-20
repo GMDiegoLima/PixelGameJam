@@ -15,21 +15,21 @@ func _process(delta):
 		$AnimationPlayer.play("hit")
 		%player.chop_animation_finished = false
 	if tree_life > 0 and has_node("/root/World/player/axe")  and chop_area:
-		$"../../UI/corner_label".text = "Press E to chop"
+		$"../../UI/Control/corner_label".text = "Press E to chop"
 		%player.inside_tree_range = true
 	elif tree_life > 0 and !has_node("/root/World/player/axe") and chop_area:
-		$"../../UI/corner_label".text = "You need a axe to chop"
+		$"../../UI/Control/corner_label".text = "You need a axe to chop"
 		%player.inside_tree_range = false
 
 func _on_gather_area_body_entered(body):
 	if body.name == "player":
-		$"../../UI/corner_label".visible = true
+		$"../../UI/Control/corner_label".visible = true
 		chop_area = true
 
 func _on_gather_area_body_exited(body):
 	if body.name == "player":
 		body.inside_tree_range = false
-		$"../../UI/corner_label".visible = false
+		$"../../UI/Control/corner_label".visible = false
 		chop_area = false
 
 func _on_animation_player_animation_finished(anim_name):
@@ -38,8 +38,7 @@ func _on_animation_player_animation_finished(anim_name):
 		$AnimationPlayer.play(["fall_left", "fall_right"].pick_random())
 	if anim_name in ["fall_left", "fall_right"]:
 		call_deferred("free")
-		if tree_life <1:
-			drop_item(global_position.x, global_position.y)
+		if tree_life < 1:
 			drop_item(global_position.x, global_position.y)
 			drop_item(global_position.x, global_position.y)
 			drop_item(global_position.x, global_position.y)

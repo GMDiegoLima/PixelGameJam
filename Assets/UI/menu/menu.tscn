@@ -1,35 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://cavb3qwy08dpc"]
+[gd_scene load_steps=10 format=3 uid="uid://cavb3qwy08dpc"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_nmfh5"]
 [ext_resource type="Texture2D" uid="uid://bedea7tvse872" path="res://Assets/UI/menu/Otter MAIN MENU no buttons.png" id="2_8c4ya"]
+[ext_resource type="StyleBox" uid="uid://dnn6i8i3p77jg" path="res://Assets/UI/menu/normal_button_style.tres" id="4_pusln"]
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="4_x10rq"]
-[ext_resource type="StyleBox" uid="uid://dkkwwhep1mi7l" path="res://Assets/UI/menu/menubutton.tres" id="5_sokoj"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbfwu"]
-bg_color = Color(0.680321, 0.680321, 0.680321, 1)
-skew = Vector2(0.4, 0)
-border_width_left = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_right = 5
-corner_radius_bottom_right = 10
-corner_detail = 1
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-shadow_color = Color(0, 0, 0, 0.419608)
-shadow_offset = Vector2(2.34, 2.23)
-anti_aliasing = false
+[ext_resource type="StyleBox" uid="uid://xmj1b8h8nn2r" path="res://Assets/UI/menu/light_button_style.tres" id="5_rhjnf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7i52"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swhtn"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bmlyy"]
+load_path = "res://.godot/imported/button.png-2ee497cea5b31751fe0123da9ae61799.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cunho"]
+content_margin_left = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 5.0
+texture = SubResource("CompressedTexture2D_bmlyy")
+region_rect = Rect2(192, 432, 640, 176)
 
 [node name="menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -768.0
-offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nmfh5")
@@ -44,93 +39,80 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_8c4ya")
 
-[node name="TextAndButtons" type="BoxContainer" parent="Background"]
+[node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.077
-anchor_right = 0.981
-anchor_bottom = 0.875
-offset_left = 0.159999
-offset_top = 0.403511
-offset_right = 20.396
-offset_bottom = -36.7782
-alignment = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -190.0
+offset_right = 275.0
+grow_vertical = 0
+scale = Vector2(0.9, 0.9)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/TextAndButtons"]
-custom_minimum_size = Vector2(889, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/separation = 0
 
-[node name="MarginContainer2" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
-custom_minimum_size = Vector2(10, 140)
+[node name="MarginContainer" type="MarginContainer" parent="BoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/margin_top = 400
+theme_override_constants/margin_left = 30
 
-[node name="Play" type="Button" parent="Background/TextAndButtons/VBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -7
+
+[node name="Play" type="Button" parent="BoxContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.137255, 0.278431, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_x10rq")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = ExtResource("5_sokoj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vbfwu")
+theme_override_styles/normal = ExtResource("4_pusln")
+theme_override_styles/hover = ExtResource("5_rhjnf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
 action_mode = 0
 text = "PLAY"
+icon_alignment = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Options" type="Button" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="Options" type="Button" parent="BoxContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.137255, 0.278431, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_x10rq")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = ExtResource("5_sokoj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vbfwu")
+theme_override_styles/normal = ExtResource("4_pusln")
+theme_override_styles/hover = ExtResource("5_rhjnf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
 action_mode = 0
 text = "OPTIONS"
 
-[node name="MarginContainer5" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Exit" type="Button" parent="Background/TextAndButtons/VBoxContainer"]
+[node name="Exit" type="Button" parent="BoxContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.137255, 0.278431, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_x10rq")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = ExtResource("5_sokoj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vbfwu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_cunho")
+theme_override_styles/hover = ExtResource("5_rhjnf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
 action_mode = 0
 text = "EXIT"
 
-[node name="MarginContainer3" type="MarginContainer" parent="Background/TextAndButtons/VBoxContainer"]
-custom_minimum_size = Vector2(10, 60)
-layout_mode = 2
-
-[connection signal="pressed" from="Background/TextAndButtons/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Background/TextAndButtons/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Background/TextAndButtons/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="BoxContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="BoxContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="BoxContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

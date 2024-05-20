@@ -1,14 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://jos3u0hqo1ol"]
+[gd_scene load_steps=20 format=3 uid="uid://jos3u0hqo1ol"]
 
 [ext_resource type="Script" path="res://Scripts/options.gd" id="1_sniew"]
 [ext_resource type="Texture2D" uid="uid://bpy38wpe7eg1j" path="res://Assets/UI/menu/bg_options.png" id="2_m25qp"]
 [ext_resource type="FontFile" uid="uid://ctulr7v2sx45b" path="res://Fonts/Pixeled.ttf" id="4_gaadm"]
+[ext_resource type="Texture2D" uid="uid://prar2agcrtde" path="res://Assets/UI/menu/button.png" id="4_xuhte"]
 [ext_resource type="AudioStream" uid="uid://c1cfhjk7ma502" path="res://Audio/sfx/loop_options_sfx.mp3" id="5_aug7u"]
-[ext_resource type="StyleBox" uid="uid://dkkwwhep1mi7l" path="res://Assets/UI/menu/menubutton.tres" id="5_wfgwl"]
+[ext_resource type="StyleBox" uid="uid://xmj1b8h8nn2r" path="res://Assets/UI/menu/light_button_style.tres" id="5_xutls"]
 
 [sub_resource type="Gradient" id="Gradient_t4lfd"]
 offsets = PackedFloat32Array(0, 0.917431)
-colors = PackedColorArray(0.552941, 0.431373, 0.388235, 1, 0.235608, 0.171754, 0.149071, 1)
+colors = PackedColorArray(0.388235, 0.452316, 0.552941, 1, 0.149071, 0.161312, 0.235608, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dfdb2"]
 gradient = SubResource("Gradient_t4lfd")
@@ -84,19 +85,13 @@ expand_margin_top = 15.0
 expand_margin_bottom = 15.0
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbfwu"]
-bg_color = Color(0.680321, 0.680321, 0.680321, 1)
-skew = Vector2(0.4, 0)
-border_width_left = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_right = 5
-corner_radius_bottom_right = 10
-corner_detail = 1
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-shadow_color = Color(0, 0, 0, 0.419608)
-shadow_offset = Vector2(2.34, 2.23)
-anti_aliasing = false
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e86al"]
+content_margin_left = 80.0
+content_margin_top = 10.0
+content_margin_right = 80.0
+content_margin_bottom = 20.0
+texture = ExtResource("4_xuhte")
+region_rect = Rect2(192, 432, 640, 176)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7i52"]
 
@@ -246,12 +241,13 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.243137, 0.137255, 0.278431, 1)
+theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("4_gaadm")
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = ExtResource("5_wfgwl")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vbfwu")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_e86al")
+theme_override_styles/hover = ExtResource("5_xutls")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7i52")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_swhtn")
 action_mode = 0

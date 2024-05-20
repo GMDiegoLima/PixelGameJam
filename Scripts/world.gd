@@ -14,10 +14,11 @@ func _ready():
 		AudioServer.set_bus_volume_db(2, linear_to_db(user_prefs.sfx_volume))
 	BgMenuMusic.playing = false
 	BgGameIntro.playing = true
+	BgSucessMusic.playing = false
 
 func _process(_delta):
-	$UI/HBoxContainer/trees_left.text = str(trees.get_child_count())
-	if trees.get_child_count() == 0 and $UI.visible or trees.get_child_count()*5 < int(30-%player.current_progress) and $UI.visible:
+	$UI/Control/BoxContainer/trees_left.text = str(trees.get_child_count())
+	if trees.get_child_count() == 0 and $UI.visible or trees.get_child_count()*4 < int(30-%player.current_progress) and $UI.visible:
 		get_tree().paused = true
 		$UI.visible = false
 		user_prefs = UserPreferences.load_or_create()
@@ -37,5 +38,12 @@ func _process(_delta):
 		else:
 			get_tree().paused = true
 			add_child(options_scene.instantiate())
-			#get_node("/root/World/options").position = Vector2(0, 0)
-			#get_node("/root/World/options").scale = Vector2(0.5, 0.5)
+
+func _on_texture_button_pressed():
+	get_tree().paused = true
+	add_child(options_scene.instantiate())
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "fadeout":
+		get_tree().change_scene_to_file("res://Scenes/sucess.tscn")

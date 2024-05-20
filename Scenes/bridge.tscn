@@ -1,13 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://istk10k740sj"]
+[gd_scene load_steps=13 format=3 uid="uid://istk10k740sj"]
 
 [ext_resource type="Texture2D" uid="uid://cn66hb7uod7kq" path="res://Assets/Items/bridge piece sprite.png" id="1_4ytmx"]
 [ext_resource type="Script" path="res://Scripts/bridge.gd" id="2_1iva5"]
+[ext_resource type="Texture2D" uid="uid://dyt1wewq73d6a" path="res://Assets/UI/menu/build icon.png" id="3_ur1s4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp31o"]
 size = Vector2(1070, 365)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s25y"]
 size = Vector2(17.1946, 6.1512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4cmb"]
+atlas = ExtResource("3_ur1s4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68a5v"]
+atlas = ExtResource("3_ur1s4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oritv"]
+atlas = ExtResource("3_ur1s4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sd2x"]
+atlas = ExtResource("3_ur1s4")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl0cd"]
+atlas = ExtResource("3_ur1s4")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or4wi"]
+atlas = ExtResource("3_ur1s4")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e6hqm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4cmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68a5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oritv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sd2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl0cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or4wi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [node name="bridge" type="Sprite2D"]
 z_index = 4
@@ -39,6 +90,23 @@ rotation = -3.14159
 scale = Vector2(40.1289, -171.511)
 shape = SubResource("RectangleShape2D_4s25y")
 debug_color = Color(0.989856, 0.0868646, 0, 0.713726)
+
+[node name="building_icons" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="building_icons"]
+position = Vector2(-220, -780)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_e6hqm")
+autoplay = "default"
+frame = 3
+frame_progress = 0.96133
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="building_icons"]
+position = Vector2(-220, 920)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_e6hqm")
+autoplay = "default"
 
 [connection signal="body_entered" from="build_area" to="." method="_on_build_area_body_entered"]
 [connection signal="body_exited" from="build_area" to="." method="_on_build_area_body_exited"]

@@ -668,7 +668,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_side",
-"speed": 6.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1704,7 +1704,7 @@ states/swim/position = Vector2(824.728, 196.238)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_4lnnm")
 states/walk/position = Vector2(638.259, 99.4646)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mrx4j"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_uvlee"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_17fim"), "walk", "swim", SubResource("AnimationNodeStateMachineTransition_u4own"), "swim", "walk", SubResource("AnimationNodeStateMachineTransition_vjstf"), "stick_idle", "stick_walk", SubResource("AnimationNodeStateMachineTransition_oo4w8"), "stick_walk", "stick_idle", SubResource("AnimationNodeStateMachineTransition_y7sb2"), "axe_idle", "axe_walk", SubResource("AnimationNodeStateMachineTransition_5w4g0"), "axe_walk", "axe_idle", SubResource("AnimationNodeStateMachineTransition_glrqx"), "axe_walk", "chop", SubResource("AnimationNodeStateMachineTransition_yskct"), "chop", "axe_walk", SubResource("AnimationNodeStateMachineTransition_7a7g3"), "idle", "axe_idle", SubResource("AnimationNodeStateMachineTransition_2snhy"), "axe_idle", "idle", SubResource("AnimationNodeStateMachineTransition_qltm2"), "stick_walk", "swim", SubResource("AnimationNodeStateMachineTransition_3u4cb"), "swim", "stick_walk", SubResource("AnimationNodeStateMachineTransition_bwgw7"), "axe_walk", "swim", SubResource("AnimationNodeStateMachineTransition_fo2k7"), "swim", "axe_walk", SubResource("AnimationNodeStateMachineTransition_w87vo"), "axe_idle", "chop", SubResource("AnimationNodeStateMachineTransition_gxihd"), "chop", "axe_idle", SubResource("AnimationNodeStateMachineTransition_ws50b"), "walk", "axe_walk", SubResource("AnimationNodeStateMachineTransition_bql1o"), "axe_walk", "walk", SubResource("AnimationNodeStateMachineTransition_qt71i"), "idle", "stick_idle", SubResource("AnimationNodeStateMachineTransition_8vvjn"), "stick_idle", "idle", SubResource("AnimationNodeStateMachineTransition_5kgox"), "walk", "stick_walk", SubResource("AnimationNodeStateMachineTransition_t27qq"), "stick_walk", "walk", SubResource("AnimationNodeStateMachineTransition_qd4h0"), "stick_idle", "axe_idle", SubResource("AnimationNodeStateMachineTransition_jl1hy"), "axe_idle", "stick_idle", SubResource("AnimationNodeStateMachineTransition_v1kaw"), "axe_walk", "stick_walk", SubResource("AnimationNodeStateMachineTransition_dkiu6"), "stick_walk", "axe_walk", SubResource("AnimationNodeStateMachineTransition_0f567")]
-graph_offset = Vector2(-42, 77)
+graph_offset = Vector2(-62, 119)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qj020"]
 random_pitch = 1.3
@@ -1762,7 +1762,6 @@ parameters/swim/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(0, 0)
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(1.9, 1.9)
 limit_left = -530
 limit_top = -400
 limit_right = 1220

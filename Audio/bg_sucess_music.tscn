@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b50i1rtlvmm76"]
+
+[ext_resource type="AudioStream" uid="uid://d4h68nlu8felx" path="res://Audio/Victory.wav" id="1_u5lai"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_u5lai")
+bus = &"music"

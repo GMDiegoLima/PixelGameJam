@@ -12,10 +12,10 @@ func _process(delta):
 		corner_label.text = "You need stick to build"
 	if Input.is_action_just_pressed("interact") and player.can_build:
 		match player.current_progress:
-			4,9,14,19:
-				print("FOI")
+			2,5,8,11,14,17,20,23,26,29:
 				$build_area/CollisionShape2D.disabled = true
 				$build_area/CollisionShape2D2.disabled = true
+				$building_icons.visible = false
 
 func _on_build_area_body_entered(body):
 	corner_label.visible = true

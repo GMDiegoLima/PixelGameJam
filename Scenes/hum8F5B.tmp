@@ -1,4 +1,4 @@
-[gd_scene load_steps=182 format=3 uid="uid://bo5vplnu0gnix"]
+[gd_scene load_steps=179 format=3 uid="uid://bo5vplnu0gnix"]
 
 [ext_resource type="Script" path="res://Scripts/human.gd" id="1_cgn8f"]
 [ext_resource type="Script" path="res://addons/vision_cone_2d/vision_cone_2d.gd" id="2_nydlo"]
@@ -540,7 +540,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pfy4s")
 }],
-"loop": false,
+"loop": true,
 "name": &"chop_down",
 "speed": 25.0
 }, {
@@ -1441,26 +1441,26 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_erl74")
 blend_point_3/pos = Vector2(-1, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bbtea"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yljbl"]
 animation = &"chop_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rrhhx"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k8w8m"]
 animation = &"chop_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vydju"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hekx0"]
 animation = &"chop_side"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jvi0b"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jiyuf"]
 animation = &"chop_side"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_peqso"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_bbtea")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fhwa8"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_yljbl")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_rrhhx")
+blend_point_1/node = SubResource("AnimationNodeAnimation_k8w8m")
 blend_point_1/pos = Vector2(0, -1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_vydju")
+blend_point_2/node = SubResource("AnimationNodeAnimation_hekx0")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_jvi0b")
+blend_point_3/node = SubResource("AnimationNodeAnimation_jiyuf")
 blend_point_3/pos = Vector2(-1, 0)
 blend_mode = 1
 
@@ -1553,6 +1553,9 @@ advance_condition = &"axe_hold"
 advance_mode = 2
 advance_condition = &"axe_idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h2b8r"]
+advance_condition = &"wood_hold"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4r8m7"]
 advance_mode = 2
 advance_condition = &"axe_idle"
@@ -1569,9 +1572,17 @@ advance_condition = &"axe_hold"
 advance_mode = 2
 advance_condition = &"walk"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ki327"]
+advance_mode = 2
+advance_condition = &"chop"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tf4y7"]
 advance_mode = 2
 advance_condition = &"axe_hold"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cgejk"]
+advance_mode = 2
+advance_condition = &"chop"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5qfj1"]
 advance_mode = 2
@@ -1581,52 +1592,25 @@ advance_condition = &"walk"
 advance_mode = 2
 advance_condition = &"chase"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rgkuf"]
-advance_mode = 2
-advance_condition = &"chop"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hdp3v"]
-advance_mode = 2
-advance_condition = &"chop"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gthr0"]
-reset = false
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"wood_hold"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kyixk"]
-advance_mode = 2
-advance_condition = &"wood_hold"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_od84w"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8wu6n"]
-advance_mode = 2
-advance_condition = &"chop"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_guxh3"]
-states/End/position = Vector2(-322.666, 265.276)
-states/Start/position = Vector2(338.667, 384.27)
+states/End/position = Vector2(-342.666, 502.954)
+states/Start/position = Vector2(341.334, 409.603)
 states/axe_hold/node = SubResource("AnimationNodeBlendSpace2D_xgo8h")
-states/axe_hold/position = Vector2(42.1151, 383.949)
+states/axe_hold/position = Vector2(44.7817, 409.282)
 states/axe_idle/node = SubResource("AnimationNodeBlendSpace2D_krbgp")
 states/axe_idle/position = Vector2(46.2199, 272.009)
 states/chase/node = SubResource("AnimationNodeBlendSpace2D_8jo3m")
-states/chase/position = Vector2(127.456, 476.268)
-states/chop/node = SubResource("AnimationNodeBlendSpace2D_peqso")
-states/chop/position = Vector2(-190.332, 376.839)
+states/chase/position = Vector2(130.123, 501.601)
+states/chop/node = SubResource("AnimationNodeBlendSpace2D_fhwa8")
+states/chop/position = Vector2(-48.094, 505.247)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_2lctw")
 states/idle/position = Vector2(222.04, 272.794)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_1sh1x")
-states/walk/position = Vector2(218.908, 384.362)
+states/walk/position = Vector2(221.857, 409.322)
 states/wood_hold/node = SubResource("AnimationNodeBlendSpace2D_2wt0a")
-states/wood_hold/position = Vector2(-205.165, 272.801)
-transitions = ["walk", "idle", SubResource("AnimationNodeStateMachineTransition_5v14b"), "walk", "chase", SubResource("AnimationNodeStateMachineTransition_oshr1"), "chase", "walk", SubResource("AnimationNodeStateMachineTransition_4p8o5"), "axe_idle", "axe_hold", SubResource("AnimationNodeStateMachineTransition_y4xwu"), "axe_hold", "axe_idle", SubResource("AnimationNodeStateMachineTransition_ajn6j"), "idle", "axe_idle", SubResource("AnimationNodeStateMachineTransition_4r8m7"), "axe_hold", "chase", SubResource("AnimationNodeStateMachineTransition_cyocq"), "chase", "axe_hold", SubResource("AnimationNodeStateMachineTransition_2shf5"), "Start", "walk", SubResource("AnimationNodeStateMachineTransition_7xcwq"), "walk", "axe_hold", SubResource("AnimationNodeStateMachineTransition_tf4y7"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_5qfj1"), "idle", "chase", SubResource("AnimationNodeStateMachineTransition_kvknb"), "chase", "chop", SubResource("AnimationNodeStateMachineTransition_rgkuf"), "axe_hold", "chop", SubResource("AnimationNodeStateMachineTransition_hdp3v"), "chop", "wood_hold", SubResource("AnimationNodeStateMachineTransition_gthr0"), "axe_idle", "wood_hold", SubResource("AnimationNodeStateMachineTransition_kyixk"), "chop", "idle", SubResource("AnimationNodeStateMachineTransition_od84w"), "idle", "chop", SubResource("AnimationNodeStateMachineTransition_8wu6n")]
-graph_offset = Vector2(-429, 189)
+states/wood_hold/position = Vector2(-215.832, 503.195)
+transitions = ["walk", "idle", SubResource("AnimationNodeStateMachineTransition_5v14b"), "walk", "chase", SubResource("AnimationNodeStateMachineTransition_oshr1"), "chase", "walk", SubResource("AnimationNodeStateMachineTransition_4p8o5"), "axe_idle", "axe_hold", SubResource("AnimationNodeStateMachineTransition_y4xwu"), "axe_hold", "axe_idle", SubResource("AnimationNodeStateMachineTransition_ajn6j"), "chop", "wood_hold", SubResource("AnimationNodeStateMachineTransition_h2b8r"), "idle", "axe_idle", SubResource("AnimationNodeStateMachineTransition_4r8m7"), "axe_hold", "chase", SubResource("AnimationNodeStateMachineTransition_cyocq"), "chase", "axe_hold", SubResource("AnimationNodeStateMachineTransition_2shf5"), "Start", "walk", SubResource("AnimationNodeStateMachineTransition_7xcwq"), "chase", "chop", SubResource("AnimationNodeStateMachineTransition_ki327"), "walk", "axe_hold", SubResource("AnimationNodeStateMachineTransition_tf4y7"), "axe_hold", "chop", SubResource("AnimationNodeStateMachineTransition_cgejk"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_5qfj1"), "idle", "chase", SubResource("AnimationNodeStateMachineTransition_kvknb")]
+graph_offset = Vector2(-331, 366)
 
 [node name="human_node" type="Node2D"]
 process_mode = 1
@@ -1739,7 +1723,7 @@ script = ExtResource("3_gqpaf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="human"]
 sprite_frames = SubResource("SpriteFrames_p3fyv")
-animation = &"chop_up"
+animation = &"chop_down"
 
 [node name="grab_area" type="CollisionShape2D" parent="human"]
 z_index = 1
@@ -1768,7 +1752,7 @@ write_polygon2d = NodePath("VisionConeRenderer")
 color = Color(1, 1, 0.6, 0.196078)
 
 [node name="VisionConeArea" type="Area2D" parent="human/VisionCone2D"]
-collision_layer = 0
+collision_layer = 16
 monitorable = false
 
 [node name="VisionConeCollider" type="CollisionPolygon2D" parent="human/VisionCone2D/VisionConeArea"]

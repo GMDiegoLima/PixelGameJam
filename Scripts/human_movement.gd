@@ -6,6 +6,8 @@ var last_pos:Vector2 = Vector2.ZERO
 var direction = Vector2.ZERO
 
 var chopping_tree = null
+var has_wood:bool = false
+
 var timer_inactive:bool = true
 var path_index:int = 0
 var in_path_line:bool = true
@@ -14,8 +16,10 @@ var in_path_line:bool = true
 @onready var chosen_path = [$"../human_path1/follow", $"../human_path2/follow", $"../human_path3/follow", $"../human_path4/follow", $"../human_path5/follow", $"../human_path6/follow"].pick_random()
 
 @onready var chasing:bool = false
+@onready var grabbing = false
 var curve_path = null
 var	min_distance = 0
+# 0 SPAWNED / 1 GOING CHOSEN PATH / 2 WALK BACK /  3 Spawn back
 var point_index:int = 0
 @onready var player:CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var grab_sfx:AudioStreamPlayer2D = $"../sfx/grab_sfx"
@@ -31,25 +35,33 @@ func change_path_status():
 
 func get_back_spawn():
 	min_distance = 0
-	path_index = 3
-	if chosen_path.get_node("human"):
-		chosen_path.get_node("human").reparent(path_spawn, true)
+	if get_parent().get_node("human"):
+		get_parent().get_node("human").reparent(path_spawn, true)
+		path_index = 3
 
-func _physics_process(delta):
-	# IMPORTANT FOR ANIMATION TREE VECTOR
+func _process(delta):
 	update_animation_parameters()
 	var current_position = global_position
 	direction = (current_position - previous_position).normalized()
 	previous_position = current_position
+
+func _physics_process(delta):
 	if !chopping_tree:
 		if chasing:
 			if in_path_line:
 				change_path_status()
 			else:
-				if global_position.distance_to(player.global_position) < 31:
-					player.global_position = global_position
+				if global_position.distance_to(player.global_position) < 31 and !player.grabbed:
 					player.grabbed = true
+					grabbing = true
+					player.global_position = global_position
 					grab_sfx.play()
+				elif global_position.distance_to(player.global_position) < 31 and !grabbing and player.grabbed:
+					chasing = false
+				elif grabbing:
+					velocity = Vector2.ZERO
+					$VisionCone2D.look_at(player.global_position)
+					$VisionCone2D.rotation -= PI/2
 				else:
 					target_position = (player.global_position - global_position).normalized()
 					velocity = Vector2(target_position * 100)
@@ -115,25 +127,18 @@ func _physics_process(delta):
 func update_animation_parameters():
 	velocity = direction*10
 	if velocity == Vector2.ZERO:
+		animation_tree["parameters/conditions/chop"] = false
 		animation_tree["parameters/conditions/chase"] = false
-		animation_tree["parameters/conditions/walk"] = false
 		animation_tree["parameters/conditions/axe_hold"] = false
+		animation_tree["parameters/conditions/walk"] = false
 		animation_tree["parameters/conditions/wood_hold"] = false
-		if path_index > 0:
-			if chopping_tree:
-				animation_tree["parameters/conditions/chop"] = true
-				animation_tree["parameters/conditions/idle"] = false
-				animation_tree["parameters/conditions/axe_idle"] = false
-			else:
-				animation_tree["parameters/conditions/axe_idle"] = true
-				animation_tree["parameters/conditions/chop"] = false
-				animation_tree["parameters/conditions/idle"] = true
+		if path_index > 0 and !chopping_tree:
+			animation_tree["parameters/conditions/axe_idle"] = true
+			animation_tree["parameters/conditions/idle"] = false
 		else:
 			animation_tree["parameters/conditions/idle"] = true
-			animation_tree["parameters/conditions/chop"] = false
 			animation_tree["parameters/conditions/axe_idle"] = false
 	else:
-		animation_tree["parameters/conditions/chop"] = false
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/axe_idle"] = false
 		if chasing:
@@ -141,14 +146,26 @@ func update_animation_parameters():
 			animation_tree["parameters/conditions/walk"] = false
 			animation_tree["parameters/conditions/axe_hold"] = false
 		elif !chasing and path_index == 1:
-			animation_tree["parameters/conditions/chase"] = false
 			animation_tree["parameters/conditions/axe_hold"] = true
+			animation_tree["parameters/conditions/chase"] = false
 			animation_tree["parameters/conditions/walk"] = false
 		elif !chasing and path_index > 1:
-			animation_tree["parameters/conditions/chase"] = false
-			animation_tree["parameters/conditions/wood_hold"] = true
-			animation_tree["parameters/conditions/axe_hold"] = false
-			animation_tree["parameters/conditions/walk"] = false
+			if chopping_tree and !has_wood:
+				animation_tree["parameters/conditions/chop"] = true
+				animation_tree["parameters/conditions/axe_hold"] = false
+				animation_tree["parameters/conditions/chase"] = false
+				animation_tree["parameters/conditions/walk"] = false
+			if has_wood:
+				animation_tree["parameters/conditions/chop"] = false
+				animation_tree["parameters/conditions/chase"] = false
+				animation_tree["parameters/conditions/wood_hold"] = true
+				animation_tree["parameters/conditions/axe_hold"] = false
+				animation_tree["parameters/conditions/walk"] = false
+			else:
+				animation_tree["parameters/conditions/chase"] = false
+				animation_tree["parameters/conditions/axe_hold"] = true
+				animation_tree["parameters/conditions/wood_hold"] = false
+				animation_tree["parameters/conditions/walk"] = false
 		else:
 			animation_tree["parameters/conditions/chase"] = false
 			animation_tree["parameters/conditions/walk"] = true
@@ -178,24 +195,28 @@ func _on_vision_cone_area_body_exited(body):
 func _on_colision_area_entered(area):
 	# THE IF ARE THE REASON THE HUMAN STOP WHEN COLIDE, IDK WHY
 	if !chopping_tree and !area.owner.get_node("gather_area/CollisionShape2D_pick").disabled:
+		path_index = 4
+		chasing = false
 		chopping_tree = area.owner
 		chopping_tree.get_node("gather_area/CollisionShape2D_pick").set_deferred("disabled", true)
-		path_index = 4
 		human_node.get_node("chopping").start()
 
 func _on_chopping_timeout():
 	min_distance = 0
 	path_index = 2
+	$VisionCone2D.visible = false
+	$grab_area.disabled = true
 
 func _on_wait_to_keep_walking_timeout():
-	timer_inactive = false
-	human_node.get_node("human_spawned/follow/human").reparent(chosen_path, true)
+	reparent(chosen_path, true)
 	min_distance = 0
 	path_index = 1
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name in ["chop_down", "chop_up" , "chop_side"]:
-		grab_sfx.get_parent().get_child(randi_range(1, 2)).play()
-		if chopping_tree:
+		animation_tree["parameters/conditions/chop"] = false
+		animation_tree["parameters/conditions/axe_idle"] = true
+		if chopping_tree != null:
 			chopping_tree.get_node("AnimationPlayer").play(["fall_left", "fall_right"].pick_random())
-			chopping_tree = false
+		has_wood = true
+		grab_sfx.get_parent().get_child(randi_range(1, 2)).play()

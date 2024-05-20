@@ -24,8 +24,8 @@ func _ready():
 
 func build():
 	current_progress += 1
-	$"../UI/ProgressBar".value = current_progress
-	$"../UI/ProgressBar/HBoxContainer/current".text = str(current_progress)
+	$"../UI/Control/BoxContainer/Panel/ProgressBar".value = current_progress
+	$"../UI/Control/BoxContainer/Panel/ProgressBar/HBoxContainer/current".text = str(current_progress)
 	can_build = false
 	if get_tree().get_nodes_in_group("stick"):
 		for child in get_children():
@@ -40,28 +40,49 @@ func build():
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
 			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x, $"../river/bridge/bridge_spawn".global_position.y)
-		5:
+		3:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+55, $"../river/bridge/bridge_spawn".global_position.y)
-		10:
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+60, $"../river/bridge/bridge_spawn".global_position.y)
+		6:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+110, $"../river/bridge/bridge_spawn".global_position.y)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+120, $"../river/bridge/bridge_spawn".global_position.y)
+		9:
+			var bridge_instance = bridge.instantiate()
+			$"../river/bridge".add_child(bridge_instance)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+180, $"../river/bridge/bridge_spawn".global_position.y)
+		12:
+			var bridge_instance = bridge.instantiate()
+			$"../river/bridge".add_child(bridge_instance)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+240, $"../river/bridge/bridge_spawn".global_position.y)
 		15:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+165, $"../river/bridge/bridge_spawn".global_position.y)
-		20:
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+300, $"../river/bridge/bridge_spawn".global_position.y)
+		18:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+220, $"../river/bridge/bridge_spawn".global_position.y)
-		25:
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+360, $"../river/bridge/bridge_spawn".global_position.y)
+		21:
 			var bridge_instance = bridge.instantiate()
 			$"../river/bridge".add_child(bridge_instance)
-			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+285, $"../river/bridge/bridge_spawn".global_position.y)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+420, $"../river/bridge/bridge_spawn".global_position.y)
+		24:
+			var bridge_instance = bridge.instantiate()
+			$"../river/bridge".add_child(bridge_instance)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+480, $"../river/bridge/bridge_spawn".global_position.y)
+		27:
+			var bridge_instance = bridge.instantiate()
+			$"../river/bridge".add_child(bridge_instance)
+			bridge_instance.global_position = Vector2($"../river/bridge/bridge_spawn".global_position.x+540, $"../river/bridge/bridge_spawn".global_position.y)
 		30:
-			get_tree().change_scene_to_file("res://Scenes/world.tscn")
+			BgGameIntro.playing = false
+			BgGameLoop.playing = false
+			BgMenuMusic.playing = false
+			chase_music.playing = false
+			$"../UI/dark_cicle".visible = true
+			$"../UI/AnimationPlayer".play("fadeout")
 
 func _process(_delta):
 	if Input.is_action_just_pressed("interact") and can_build and has_stick:
@@ -75,7 +96,7 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	update_animation_parameters()
-	if is_being_chased and !chase_music.playing:
+	if is_being_chased and !chase_music.playing and !grabbed:
 		BgGameIntro.stop()
 		BgGameLoop.stop()
 		chase_music.play()
@@ -100,23 +121,28 @@ func _physics_process(_delta):
 		else:
 			$"../gamover/MarginContainer/VBoxContainer/bestscore".text = "Your max score was: "+str(user_prefs.max_score)
 		$"../gamover".visible = true
+		BgGameIntro.playing = false
+		BgGameLoop.playing = false
+		BgMenuMusic.playing = false
+		chase_music.playing = false
+		$"../defeat".play()
 		$"../gamover/AnimationPlayer".play("fade_out")
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
 
 func _on_bridge_body_entered(_body):
-	$"../UI/corner_label".visible = true
+	$"../UI/Control/corner_label".visible = true
 	if has_stick:
 		can_build = true
-		$"../UI/corner_label".text = "press E to build"
+		$"../UI/Control/corner_label".text = "press E to build"
 	else:
 		can_build = false
-		$"../UI/corner_label".text = "You need stick to build"
+		$"../UI/Control/corner_label".text = "You need stick to build"
 
 func _on_bridge_body_exited(_body):
 	can_build = false
-	$"../UI/corner_label".visible = false
+	$"../UI/Control/corner_label".visible = false
 
 func _on_river_water_body_entered(_body):
 	$water_mask.clip_children = 1
@@ -199,6 +225,11 @@ func _on_river_death_zone_body_entered(body):
 	else:
 		$"../gamover/MarginContainer/VBoxContainer/bestscore".text = "Your max score was: "+str(user_prefs.max_score)
 	$"../gamover".visible = true
+	BgGameIntro.playing = false
+	BgGameLoop.playing = false
+	BgMenuMusic.playing = false
+	chase_music.playing = false
+	$"../defeat".play()
 	$"../gamover/AnimationPlayer".play("fade_out")
 
 func _on_button_pressed():
